@@ -1,0 +1,53 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/HeliosCond-Bold-Italic.eot",
+      "sha1": "72e6c7fd095ee6feb4e21805d45c9ea1efbdde63"
+    },
+    {
+      "path": "assets/fonts/HeliosCond-Bold-Italic.ttf",
+      "sha1": "72798219ab8cc5091fa464a4f55fc987eab4aecf"
+    },
+    {
+      "path": "assets/fonts/HeliosCond-Bold-Italic.woff",
+      "sha1": "d2cea60c1ada4dd18f7f3af6dbb67afadbda580a"
+    },
+    {
+      "path": "assets/fonts/HeliosCond-Bold.eot",
+      "sha1": "2cbc4251c70a9f5ab317091d9bd8217dfba848d5"
+    },
+    {
+      "path": "assets/fonts/HeliosCond-Bold.ttf",
+      "sha1": "6fb6fcdef472416eb0b1abc04fffc456aa69dac6"
+    },
+    {
+      "path": "assets/fonts/HeliosCond-Bold.woff",
+      "sha1": "93433ba5bd8bda2fded0e5bf3ab4ed6d313ebec9"
+    },
+    {
+      "path": "assets/fonts/HeliosCond-Italic.eot",
+      "sha1": "2236d3f1aaa56a5694009bde2c41e60187331ad9"
+    },
+    {
+      "path": "assets/fonts/HeliosCond-Italic.ttf",
+      "sha1": "f09d2ffa081727583b78d606b29e1689f30609cf"
+    },
+    {
+      "path": "assets/fonts/HeliosCond-Italic.woff",
+      "sha1": "405aba8dd1c7bf3ff500e954cc3bb24839758a1a"
+    },
+    {
+      "path": "assets/fonts/HeliosCond.eot",
+      "sha1": "774bbb3ca12e8bb08bd847f0249b98364f6d220c"
+    },
+    {
+      "path": "assets/fonts/HeliosCond.ttf",
+      "sha1": "652894b6247a1f2e7422c13e95ab7ccea91bba31"
+    },
+    {
+      "path": "assets/fonts/HeliosCond.woff",
+      "sha1": "1ac74421ecc2b3af123f2ea2fdc656b7b3623790"
+    }
+  ]
+}
