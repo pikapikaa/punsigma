@@ -4,6 +4,7 @@ import {
   BottomSheetModal,
   BottomSheetFlatList,
   BottomSheetFlatListMethods,
+  BottomSheetBackdrop,
 } from '@gorhom/bottom-sheet';
 import TrackPlayer, {State, useProgress} from 'react-native-track-player';
 
@@ -39,7 +40,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
     }
   }, [position]);
 
-  const snapPoints = useMemo(() => ['10%', '95%'], []);
+  const snapPoints = useMemo(() => ['95%'], []);
 
   const startAndStop = async () => {
     const state = await TrackPlayer.getState();
@@ -71,13 +72,25 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
     [currentIndex],
   );
 
+  const renderBackdrop = useCallback(
+    props => (
+      <BottomSheetBackdrop
+        {...props}
+        disappearsOnIndex={-1}
+        appearsOnIndex={0}
+      />
+    ),
+    [],
+  );
+
   return (
     <BottomSheetModal
       ref={modalRef}
-      index={1}
+      index={0}
       snapPoints={snapPoints}
       onChange={handleSheetChanges}
-      enablePanDownToClose>
+      enablePanDownToClose
+      backdropComponent={renderBackdrop}>
       <View style={styles.container}>
         <View style={{paddingHorizontal: 15, flex: 1}}>
           <Text style={styles.title}>if u feeling “Lost”</Text>
