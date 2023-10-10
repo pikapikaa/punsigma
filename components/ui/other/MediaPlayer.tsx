@@ -2,39 +2,43 @@ import * as React from 'react';
 import {View, StyleSheet, Pressable, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Slider from '@react-native-community/slider';
+import TrackPlayer, {
+  State,
+  Event,
+  useTrackPlayerEvents,
+  useProgress,
+  usePlaybackState,
+} from 'react-native-track-player';
 
 interface MediaPlayerProps {
   onPress(): void;
   seekTo(position: number): void;
-  isPlay: Boolean;
-  duration: number;
-  progress: number;
 }
 
-const MediaPlayer = ({
-  onPress,
-  isPlay = false,
-  duration = 0,
-  progress = 0,
-  seekTo,
-}: MediaPlayerProps) => {
-  function msToHMS(ms: number) {
-    let seconds: number | string = Math.floor((ms / 1000) % 60);
-    let minutes: number | string = Math.floor((ms / (1000 * 60)) % 60);
-    let hours: number | string = Math.floor((ms / (1000 * 60 * 60)) % 24);
+const MediaPlayer = ({onPress, seekTo}: MediaPlayerProps) => {
+  const playerState = usePlaybackState();
+  const isPlaying = playerState === State.Playing;
+  const {position, duration} = useProgress();
 
-    hours = hours < 10 ? '0' + hours : hours;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
+  function fancyTimeFormat(seconds: number) {
+    const hrs = ~~(seconds / 3600);
+    const mins = ~~((seconds % 3600) / 60);
+    const secs = ~~seconds % 60;
 
-    return hours + ':' + minutes + ':' + seconds;
+    let ret = '';
+    if (hrs > 0) {
+      ret += '' + hrs + ':' + (mins < 10 ? '0' : '');
+    }
+    ret += '' + mins + ':' + (secs < 10 ? '0' : '');
+    ret += '' + secs;
+    return ret;
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.progressContainer}>
-        <Text style={styles.durationText}>{msToHMS(progress * 1000)}</Text>
-        <Slider
+        <Text style={styles.durationText}>{fancyTimeFormat(position)}</Text>
+        {/* <Slider
           style={styles.line}
           minimumValue={0}
           maximumValue={+duration}
@@ -43,8 +47,8 @@ const MediaPlayer = ({
           maximumTrackTintColor="#bacee8"
           thumbTintColor="#4E67BF"
           onValueChange={ms => seekTo(Math.floor(ms / 1000))}
-        />
-        <Text style={styles.durationText}>{msToHMS(duration)}</Text>
+        /> */}
+        <Text style={styles.durationText}>{fancyTimeFormat(duration)}</Text>
       </View>
 
       <View style={styles.playerContainer}>
@@ -53,7 +57,7 @@ const MediaPlayer = ({
         </View>
         <Pressable onPress={onPress}>
           <Icon
-            name={isPlay ? 'pause-circle-outline' : 'play-circle-outline'}
+            name={isPlaying ? 'pause-circle-outline' : 'play-circle-outline'}
             size={70}
             color="#4E67BF"
           />

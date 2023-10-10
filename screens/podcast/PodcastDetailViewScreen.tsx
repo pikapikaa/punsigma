@@ -1,32 +1,21 @@
 import React, {useCallback, useMemo, useEffect, useState, useRef} from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  Pressable,
-  NativeEventEmitter,
-  Platform,
-} from 'react-native';
+import {Text, View, StyleSheet, Pressable} from 'react-native';
 import {
   BottomSheetModal,
   BottomSheetFlatList,
   BottomSheetFlatListMethods,
 } from '@gorhom/bottom-sheet';
-import BackgroundTimer from 'react-native-background-timer';
+import TrackPlayer, {State, useProgress} from 'react-native-track-player';
 
 import {track} from '../../dummyData';
 import MediaPlayer from '../../components/ui/other/MediaPlayer';
 import {TrackInterface} from '../../dummyData';
-import MediaModule from '../../components/nativeModules/MediaModule';
 
 interface PodcastDetailViewScreenProps {
   modalRef: React.RefObject<BottomSheetModal>;
 }
 
 const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
-  const [time, setTime] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
-  const [duration, setDuration] = useState(0);
   const [lastHiglighted, setLastHiglighted] = useState<TrackInterface | null>(
     null,
   );
@@ -34,23 +23,10 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
     React.Ref<BottomSheetFlatListMethods> | undefined | null
   >();
 
+  const {position} = useProgress();
+
   useEffect(() => {
-    let intervalId: NodeJS.Timeout | number;
-
-    if (isRunning) {
-      intervalId = BackgroundTimer.setInterval(() => {
-        setTime(prev => prev + 1);
-      }, 1000);
-    }
-
-    const durationMs = Math.floor(duration / 1000);
-    if (durationMs && durationMs === time) {
-      BackgroundTimer.clearInterval(intervalId);
-      setIsRunning(false);
-      setTime(0);
-    }
-
-    const item = track.find(el => el.progress === time);
+    const item = track.find(el => el.progress === Math.floor(position));
     if (item) {
       setLastHiglighted(item);
       flatListRef?.current?.scrollToItem({
@@ -58,43 +34,24 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
         viewPosition: 0.5,
       });
     }
-
-    return () => {
-      BackgroundTimer.clearInterval(intervalId);
-    };
-  }, [isRunning, time, duration]);
-
-  useEffect(() => {
-    if (Platform.OS === 'android') {
-      const eventEmitter = new NativeEventEmitter();
-      let eventListener = eventEmitter.addListener('eventDuration', event => {
-        setDuration(event.duration);
-      });
-      return () => {
-        eventListener.remove();
-      };
-    }
-  }, []);
+  }, [position]);
 
   const snapPoints = useMemo(() => ['10%', '95%'], []);
 
-  const startAndStop = () => {
-    setIsRunning(prev => !prev);
-    if (isRunning) MediaModule.pauseSound();
-    else
-      MediaModule.playSound(
-        'http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3',
-      );
+  const startAndStop = async () => {
+    const state = await TrackPlayer.getState();
+    if (state === State.Playing) {
+      await TrackPlayer.pause();
+    } else {
+      await TrackPlayer.play();
+    }
   };
 
-  const seekTo = (t: number) => {
-    setTime(t);
-    MediaModule.seekTo(t * 1000);
+  const seekTo = async (t: number) => {
+    await TrackPlayer.seekTo(t);
   };
 
-  const handleSheetChanges = useCallback((index: number) => {
-    //console.log('handleSheetChanges', index);
-  }, []);
+  const handleSheetChanges = useCallback(async (index: number) => {}, []);
 
   const renderItem = useCallback(
     ({item}: {item: TrackInterface}) => {
@@ -108,7 +65,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
         </Pressable>
       );
     },
-    [time, lastHiglighted],
+    [lastHiglighted],
   );
 
   return (
@@ -130,13 +87,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
           />
         </View>
 
-        <MediaPlayer
-          onPress={startAndStop}
-          isPlay={isRunning}
-          duration={duration}
-          progress={time}
-          seekTo={seekTo}
-        />
+        <MediaPlayer onPress={startAndStop} seekTo={seekTo} />
       </View>
     </BottomSheetModal>
   );

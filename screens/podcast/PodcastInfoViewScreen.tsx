@@ -1,4 +1,4 @@
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback, useRef, useEffect} from 'react';
 import {
   Text,
   View,
@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import PodcastDetailViewScreen from './PodcastDetailViewScreen';
+import TrackPlayer, {usePlaybackState} from 'react-native-track-player';
 
 interface PodcastInfoViewScreenProps {}
 
@@ -19,8 +20,35 @@ const URI = 'https://floffi.media/images/Mr-Robot-Elliot-01-600x400.jpg';
 const PodcastInfoViewScreen = (props: PodcastInfoViewScreenProps) => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
-  const handlePresentModalPress = useCallback(() => {
+  useEffect(() => {
+    async function fetchData() {
+      await TrackPlayer.setupPlayer();
+      // await TrackPlayer.updateOptions({
+      //   android: {
+      //     appKilledPlaybackBehavior: AppKilledPlaybackBehavior.PausePlayback,
+      //   },
+      // });
+    }
+    fetchData();
+  }, []);
+
+  const handlePresentModalPress = useCallback(async () => {
     bottomSheetModalRef.current?.present();
+
+    await TrackPlayer.reset();
+    await TrackPlayer.add([
+      {
+        url: require('../../assets/media/podcast.mp3'),
+        title: 'Avaritia',
+        artist: 'deadmau5',
+        album: 'while(1<2)',
+        genre: 'Progressive House, Electro House',
+        date: '2014-05-20T07:00:00+00:00', // RFC 3339
+        artwork: 'http://example.com/cover.png', // Load artwork from the network
+        duration: 402, // Duration in seconds
+      },
+    ]);
+    await TrackPlayer.play();
   }, []);
 
   return (
