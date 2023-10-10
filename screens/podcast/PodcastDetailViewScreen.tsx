@@ -15,10 +15,13 @@ interface PodcastDetailViewScreenProps {
   modalRef: React.RefObject<BottomSheetModal>;
 }
 
+type FlatListRenderItem = {
+  item: TrackInterface;
+  index: number;
+};
+
 const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
-  const [lastHiglighted, setLastHiglighted] = useState<TrackInterface | null>(
-    null,
-  );
+  const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<
     React.Ref<BottomSheetFlatListMethods> | undefined | null
   >();
@@ -26,11 +29,11 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
   const {position} = useProgress();
 
   useEffect(() => {
-    const item = track.find(el => el.progress === Math.floor(position));
-    if (item) {
-      setLastHiglighted(item);
-      flatListRef?.current?.scrollToItem({
-        item,
+    const index = track.findIndex(el => el.progress === Math.floor(position));
+    if (index > -1) {
+      setCurrentIndex(index);
+      flatListRef?.current?.scrollToIndex({
+        index,
         viewPosition: 0.5,
       });
     }
@@ -54,9 +57,9 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
   const handleSheetChanges = useCallback(async (index: number) => {}, []);
 
   const renderItem = useCallback(
-    ({item}: {item: TrackInterface}) => {
-      const {text, id, progress} = item;
-      const isHighlighted = id === lastHiglighted?.id;
+    ({item, index}: FlatListRenderItem) => {
+      const {text, progress} = item;
+      const isHighlighted = index === currentIndex;
       return (
         <Pressable onPress={() => seekTo(progress)}>
           <Text style={[styles.text, isHighlighted && styles.highligthText]}>
@@ -65,7 +68,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
         </Pressable>
       );
     },
-    [lastHiglighted],
+    [currentIndex],
   );
 
   return (
