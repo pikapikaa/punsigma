@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useEffect, useState} from 'react';
+import React, {useCallback, useMemo, useEffect, useState, useRef} from 'react';
 import {
   Text,
   View,
@@ -7,7 +7,11 @@ import {
   NativeEventEmitter,
   Platform,
 } from 'react-native';
-import {BottomSheetModal, BottomSheetFlatList} from '@gorhom/bottom-sheet';
+import {
+  BottomSheetModal,
+  BottomSheetFlatList,
+  BottomSheetFlatListMethods,
+} from '@gorhom/bottom-sheet';
 import BackgroundTimer from 'react-native-background-timer';
 
 import {track} from '../../dummyData';
@@ -16,7 +20,7 @@ import {TrackInterface} from '../../dummyData';
 import MediaModule from '../../components/nativeModules/MediaModule';
 
 interface PodcastDetailViewScreenProps {
-  modalRef: React.RefObject<BottomSheetModalMethods>;
+  modalRef: React.RefObject<BottomSheetModal>;
 }
 
 const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
@@ -26,6 +30,9 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
   const [lastHiglighted, setLastHiglighted] = useState<TrackInterface | null>(
     null,
   );
+  const flatListRef = useRef<
+    React.Ref<BottomSheetFlatListMethods> | undefined | null
+  >();
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout | number;
@@ -44,7 +51,13 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
     }
 
     const item = track.find(el => el.progress === time);
-    if (item) setLastHiglighted(item);
+    if (item) {
+      setLastHiglighted(item);
+      flatListRef?.current?.scrollToItem({
+        item,
+        viewPosition: 0.5,
+      });
+    }
 
     return () => {
       BackgroundTimer.clearInterval(intervalId);
@@ -113,6 +126,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
             keyExtractor={({id}) => id.toString()}
             renderItem={renderItem}
             ItemSeparatorComponent={() => <View style={{height: 20}} />}
+            ref={flatListRef}
           />
         </View>
 
