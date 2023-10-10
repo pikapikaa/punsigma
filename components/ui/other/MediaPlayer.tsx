@@ -1,9 +1,11 @@
 import * as React from 'react';
 import {View, StyleSheet, Pressable, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Slider from '@react-native-community/slider';
 
 interface MediaPlayerProps {
   onPress(): void;
+  seekTo(position: number): void;
   isPlay: Boolean;
   duration: number;
   progress: number;
@@ -14,6 +16,7 @@ const MediaPlayer = ({
   isPlay = false,
   duration = 0,
   progress = 0,
+  seekTo,
 }: MediaPlayerProps) => {
   function msToHMS(ms: number) {
     let seconds: number | string = Math.floor((ms / 1000) % 60);
@@ -31,7 +34,16 @@ const MediaPlayer = ({
     <View style={styles.container}>
       <View style={styles.progressContainer}>
         <Text style={styles.durationText}>{msToHMS(progress * 1000)}</Text>
-        <View style={styles.line}></View>
+        <Slider
+          style={styles.line}
+          minimumValue={0}
+          maximumValue={+duration}
+          value={progress * 1000}
+          minimumTrackTintColor="#4E67BF"
+          maximumTrackTintColor="#bacee8"
+          thumbTintColor="#4E67BF"
+          onValueChange={ms => seekTo(Math.floor(ms / 1000))}
+        />
         <Text style={styles.durationText}>{msToHMS(duration)}</Text>
       </View>
 
@@ -77,10 +89,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   line: {
-    height: 4,
-    backgroundColor: '#4E67BF',
+    height: 30,
+    backgroundColor: 'trasnparent',
     width: '70%',
-    borderRadius: 10,
   },
   playerContainer: {
     alignItems: 'center',

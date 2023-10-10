@@ -121,6 +121,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
           isPlay={isRunning}
           duration={duration}
           progress={time}
+          seekTo={seekTo}
         />
       </View>
     </BottomSheetModal>
