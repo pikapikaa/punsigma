@@ -1,16 +1,16 @@
-import React, {useCallback, useMemo, useEffect, useState, useRef} from 'react';
+import React, {useCallback, useEffect, useState, useRef} from 'react';
 import {Text, View, StyleSheet, Pressable} from 'react-native';
 import {
   BottomSheetModal,
   BottomSheetFlatList,
   BottomSheetFlatListMethods,
-  BottomSheetBackdrop,
 } from '@gorhom/bottom-sheet';
 import TrackPlayer, {State, useProgress} from 'react-native-track-player';
 
 import {track} from '../../dummyData';
 import MediaPlayer from '../../components/ui/other/MediaPlayer';
 import {TrackInterface} from '../../dummyData';
+import BottomSheetModalWrap from '../../components/layouts/BottomSheetModalWrap';
 
 interface PodcastDetailViewScreenProps {
   modalRef: React.RefObject<BottomSheetModal>;
@@ -40,8 +40,6 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
     }
   }, [position]);
 
-  const snapPoints = useMemo(() => ['95%'], []);
-
   const startAndStop = async () => {
     const state = await TrackPlayer.getState();
     if (state === State.Playing) {
@@ -54,8 +52,6 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
   const seekTo = async (t: number) => {
     await TrackPlayer.seekTo(t);
   };
-
-  const handleSheetChanges = useCallback(async (index: number) => {}, []);
 
   const renderItem = useCallback(
     ({item, index}: FlatListRenderItem) => {
@@ -72,26 +68,8 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
     [currentIndex],
   );
 
-  const renderBackdrop = useCallback(
-    props => (
-      <BottomSheetBackdrop
-        {...props}
-        disappearsOnIndex={-1}
-        appearsOnIndex={0}
-        opacity={0.1}
-      />
-    ),
-    [],
-  );
-
   return (
-    <BottomSheetModal
-      ref={modalRef}
-      index={0}
-      snapPoints={snapPoints}
-      onChange={handleSheetChanges}
-      enablePanDownToClose
-      backdropComponent={renderBackdrop}>
+    <BottomSheetModalWrap modalRef={modalRef}>
       <View style={styles.container}>
         <View style={{paddingHorizontal: 15, flex: 1}}>
           <Text style={styles.title}>if u feeling “Lost”</Text>
@@ -106,7 +84,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
 
         <MediaPlayer onPress={startAndStop} seekTo={seekTo} />
       </View>
-    </BottomSheetModal>
+    </BottomSheetModalWrap>
   );
 };
 
