@@ -23,9 +23,7 @@ type FlatListRenderItem = {
 
 const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const flatListRef = useRef<
-    React.Ref<BottomSheetFlatListMethods> | undefined | null
-  >();
+  const flatListRef = useRef<BottomSheetFlatListMethods>(null);
 
   const {position} = useProgress();
 
