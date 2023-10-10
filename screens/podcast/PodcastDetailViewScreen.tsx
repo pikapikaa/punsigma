@@ -78,6 +78,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
         {...props}
         disappearsOnIndex={-1}
         appearsOnIndex={0}
+        opacity={0.1}
       />
     ),
     [],
