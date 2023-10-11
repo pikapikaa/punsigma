@@ -40,10 +40,7 @@ const MediaPlayer = ({onPress, seekTo}: MediaPlayerProps) => {
           minimumTrackTintColor="#4E67BF"
           maximumTrackTintColor="#bacee8"
           thumbTintColor="#4E67BF"
-          onValueChange={ms => {
-            console.log(ms, 'mss');
-            seekTo(Math.floor(ms));
-          }}
+          onValueChange={ms => seekTo(Math.floor(ms))}
         />
         <Text style={styles.durationText}>{fancyTimeFormat(duration)}</Text>
       </View>
@@ -83,6 +80,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 1,
+    backgroundColor: 'white',
   },
   progressContainer: {
     alignItems: 'center',
