@@ -2,13 +2,7 @@ import * as React from 'react';
 import {View, StyleSheet, Pressable, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Slider from '@react-native-community/slider';
-import TrackPlayer, {
-  State,
-  Event,
-  useTrackPlayerEvents,
-  useProgress,
-  usePlaybackState,
-} from 'react-native-track-player';
+import {State, useProgress, usePlaybackState} from 'react-native-track-player';
 
 interface MediaPlayerProps {
   onPress(): void;
@@ -38,16 +32,19 @@ const MediaPlayer = ({onPress, seekTo}: MediaPlayerProps) => {
     <View style={styles.container}>
       <View style={styles.progressContainer}>
         <Text style={styles.durationText}>{fancyTimeFormat(position)}</Text>
-        {/* <Slider
+        <Slider
           style={styles.line}
           minimumValue={0}
-          maximumValue={+duration}
-          value={progress * 1000}
+          maximumValue={Math.floor(duration)}
+          value={Math.floor(position)}
           minimumTrackTintColor="#4E67BF"
           maximumTrackTintColor="#bacee8"
           thumbTintColor="#4E67BF"
-          onValueChange={ms => seekTo(Math.floor(ms / 1000))}
-        /> */}
+          onValueChange={ms => {
+            console.log(ms, 'mss');
+            seekTo(Math.floor(ms));
+          }}
+        />
         <Text style={styles.durationText}>{fancyTimeFormat(duration)}</Text>
       </View>
 
@@ -58,7 +55,7 @@ const MediaPlayer = ({onPress, seekTo}: MediaPlayerProps) => {
         <Pressable onPress={onPress}>
           <Icon
             name={isPlaying ? 'pause-circle-outline' : 'play-circle-outline'}
-            size={70}
+            size={80}
             color="#4E67BF"
           />
         </Pressable>
@@ -91,11 +88,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingHorizontal: 10,
   },
   line: {
     height: 30,
     backgroundColor: 'trasnparent',
-    width: '70%',
+    width: '80%',
   },
   playerContainer: {
     alignItems: 'center',
