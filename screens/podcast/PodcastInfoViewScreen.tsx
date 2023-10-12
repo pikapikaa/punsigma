@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import PodcastDetailViewScreen from './PodcastDetailViewScreen';
-import TrackPlayer, {usePlaybackState} from 'react-native-track-player';
+import TrackPlayer from 'react-native-track-player';
 
 interface PodcastInfoViewScreenProps {}
 
@@ -19,18 +19,6 @@ const URI = 'https://floffi.media/images/Mr-Robot-Elliot-01-600x400.jpg';
 
 const PodcastInfoViewScreen = (props: PodcastInfoViewScreenProps) => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      await TrackPlayer.setupPlayer();
-      // await TrackPlayer.updateOptions({
-      //   android: {
-      //     appKilledPlaybackBehavior: AppKilledPlaybackBehavior.PausePlayback,
-      //   },
-      // });
-    }
-    fetchData();
-  }, []);
 
   const handlePresentModalPress = useCallback(async () => {
     bottomSheetModalRef.current?.present();
