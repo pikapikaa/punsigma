@@ -33,7 +33,8 @@ const PodcastInfoViewScreen = (props: PodcastInfoViewScreenProps) => {
         album: 'while(1<2)',
         genre: 'Progressive House, Electro House',
         date: '2014-05-20T07:00:00+00:00', // RFC 3339
-        artwork: 'http://example.com/cover.png', // Load artwork from the network
+        artwork:
+          'https://compote.slate.com/images/ea417857-5b23-47b9-9380-c1b70b33694f.jpg?crop=1180%2C842%2Cx0%2Cy0&width=1920', // Load artwork from the network
         duration: 402, // Duration in seconds
       },
     ]);
