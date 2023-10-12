@@ -23,7 +23,13 @@ function MainStack() {
       <Stack.Screen
         name="PodcastInfoView"
         component={PodcastInfoViewScreen}
-        options={{title: 'Подкаст'}}
+        options={{
+          title: '',
+          headerStyle: {backgroundColor: '#F3F7FC'},
+          headerShadowVisible: false,
+          headerBackTitleVisible: false,
+          headerTitleAlign: 'center',
+        }}
       />
     </Stack.Navigator>
   );

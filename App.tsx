@@ -29,7 +29,6 @@ const Inner: FC = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <StatusBar barStyle={'light-content'} />
       <Navigation />
     </SafeAreaView>
   );
