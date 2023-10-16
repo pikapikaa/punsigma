@@ -30,11 +30,7 @@ const Inner: FC = () => {
     );
   }
 
-  return (
-    <SafeAreaView style={{flex: 1}}>
-      <Navigation />
-    </SafeAreaView>
-  );
+  return <Navigation />;
 };
 
 function useSetupPlayer() {
