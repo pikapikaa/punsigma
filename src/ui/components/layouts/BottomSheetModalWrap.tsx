@@ -10,7 +10,7 @@ const BottomSheetModalWrap = ({
   modalRef,
   children,
 }: BottomSheetModalWrapProps) => {
-  const snapPoints = useMemo(() => ['95%'], []);
+  const snapPoints = useMemo(() => ['90%'], []);
 
   const handleSheetChanges = useCallback(async (index: number) => {}, []);
 
