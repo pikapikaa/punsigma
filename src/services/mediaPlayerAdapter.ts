@@ -5,11 +5,12 @@ import TrackPlayer, {
   usePlaybackState,
 } from 'react-native-track-player';
 import {MediaPlayerService} from '../application/ports';
+import {Podcast} from '../domain/Podcast';
 
 export function useMediaPlayer(): MediaPlayerService {
   return {
-    async add(podcast: Track) {
-      await TrackPlayer.add([podcast]);
+    async add(podcast: Podcast) {
+      await TrackPlayer.add([podcast as Track]);
     },
     async reset() {
       await TrackPlayer.reset();

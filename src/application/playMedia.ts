@@ -1,5 +1,5 @@
-import {Track} from 'react-native-track-player';
 import {useMediaPlayer} from '../services/mediaPlayerAdapter';
+import { Podcast } from '../domain/Podcast';
 
 export function usePlayMedia() {
   const mediaPlayer = useMediaPlayer();
@@ -16,7 +16,7 @@ export function usePlayMedia() {
     mediaPlayer.seekTo(sek);
   }
 
-  async function addMedia(podcast: Track) {
+  async function addMedia(podcast: Podcast) {
     mediaPlayer.add(podcast);
   }
 

@@ -1,8 +1,9 @@
-import {Progress, Track} from 'react-native-track-player';
+import {Progress} from 'react-native-track-player';
+import {Podcast} from '../domain/Podcast';
 
 export interface MediaPlayerService {
   reset(): void;
-  add(podcast: Track): void;
+  add(podcast: Podcast): void;
   playAndPause(): void;
   pause(): void;
   seekTo(time: number): void;

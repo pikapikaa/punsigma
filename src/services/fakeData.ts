@@ -1,7 +1,6 @@
-import {Track} from 'react-native-track-player';
 import {Podcast} from '../domain/Podcast';
 
-export const podcasts: Track[] = [
+export const podcasts: Podcast[] = [
   {
     id: '1',
     url: `https://drive.google.com/u/0/uc?id=1dZvOLzqIyrXZmr6yNtl0-1gOo0aZ0XLu&export=download`,

@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useEffect} from 'react';
+import React, {useCallback, useRef} from 'react';
 import {
   Text,
   View,
@@ -17,11 +17,7 @@ import {usePlayMedia} from '../../../application/playMedia';
 import {podcasts} from '../../../services/fakeData';
 import {formateDate, parseStrToDate2} from '../../../lib/datetime';
 
-interface PodcastInfoViewScreenProps {}
-
-const URI = 'https://floffi.media/images/Mr-Robot-Elliot-01-600x400.jpg';
-
-const PodcastInfoViewScreen = (props: PodcastInfoViewScreenProps) => {
+const PodcastInfoViewScreen = () => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const {addMedia, playAndPauseMedia, resetMedia} = usePlayMedia();
   const podcast = podcasts[0];
