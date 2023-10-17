@@ -1,9 +1,9 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import PodcastInfoViewScreen from '../screens/podcast/PodcastInfoViewScreen';
-import MainScreen from '../screens/main/MainScreen';
-import PlayerScreen from '../screens/main/PlayerScreen';
+import PodcastInfoViewScreen from '../src/ui/screens/podcast/PodcastInfoViewScreen';
+import MainScreen from '../src/ui/screens/Main/MainScreen';
+import PlayerScreen from '../src/ui/screens/Main/PlayerScreen';
 
 const Stack = createNativeStackNavigator();
 

@@ -6,11 +6,11 @@ import {
   BottomSheetFlatListMethods,
 } from '@gorhom/bottom-sheet';
 
-import {track} from '../../dummyData';
+import {track} from '../../../../dummyData';
 import MediaPlayer from '../../components/ui/other/MediaPlayer';
-import {TrackInterface} from '../../dummyData';
+import {TrackInterface} from '../../../../dummyData';
 import BottomSheetModalWrap from '../../components/layouts/BottomSheetModalWrap';
-import {usePlayMedia} from '../../src/application/playMedia';
+import {usePlayMedia} from '../../../application/playMedia';
 
 interface PodcastDetailViewScreenProps {
   modalRef: React.RefObject<BottomSheetModal>;

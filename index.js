@@ -7,7 +7,7 @@ import App from './App';
 import {name as appName} from './app.json';
 
 import TrackPlayer from 'react-native-track-player';
-import {PlaybackService} from './services/PlaybackService';
+import {PlaybackService} from './src/services/PlaybackService';
 
 TrackPlayer.registerPlaybackService(() => PlaybackService);
 

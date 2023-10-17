@@ -3,6 +3,7 @@ import {RatingType, PitchAlgorithm} from 'react-native-track-player';
 export type Podcast = {
   id: string;
   url: string;
+  description: string;
   type?: string;
   userAgent?: string;
   contentType?: string;
@@ -10,7 +11,6 @@ export type Podcast = {
   title: string;
   artist?: string;
   album?: string;
-  description: string;
   genre?: string;
   date?: string;
   rating?: RatingType;

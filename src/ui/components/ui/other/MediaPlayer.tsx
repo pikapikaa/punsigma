@@ -2,7 +2,7 @@ import * as React from 'react';
 import {View, StyleSheet, Pressable, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Slider from '@react-native-community/slider';
-import {usePlayMedia} from '../../../src/application/playMedia';
+import {usePlayMedia} from '../../../../application/playMedia';
 
 interface MediaPlayerProps {
   onPress(): void;

@@ -7,53 +7,43 @@ import {
   ScrollView,
   Pressable,
   StatusBar,
-  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import PodcastDetailViewScreen from './PodcastDetailViewScreen';
 
-import {usePlayMedia} from '../../src/application/playMedia';
+import {usePlayMedia} from '../../../application/playMedia';
+import {podcasts} from '../../../services/fakeData';
+import {formateDate, parseStrToDate2} from '../../../lib/datetime';
 
 interface PodcastInfoViewScreenProps {}
 
 const URI = 'https://floffi.media/images/Mr-Robot-Elliot-01-600x400.jpg';
 
 const PodcastInfoViewScreen = (props: PodcastInfoViewScreenProps) => {
-  const fixedString = `I'm a fixed string that slipleted. I'm a fixed string that slipleted. I'm a fixed string that slipleted. I'm a fixed string that slipleted. I'm a fixed string that slipleted. I'm a fixed string that slipleted. I'm a fixed string that slipleted. I'm a fixed string that slipleted. I'm a fixed string that slipleted.`;
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const {addMedia, playAndPauseMedia, resetMedia} = usePlayMedia();
+  const podcast = podcasts[0];
 
   const handlePresentModalPress = useCallback(async () => {
     bottomSheetModalRef.current?.present();
-
     await resetMedia();
-    await addMedia({
-      url: `https://drive.google.com/u/0/uc?id=1dZvOLzqIyrXZmr6yNtl0-1gOo0aZ0XLu&export=download`,
-      title: 'Avaritia',
-      artist: 'deadmau5',
-      album: 'while(1<2)',
-      genre: 'Progressive House, Electro House',
-      date: '2014-05-20T07:00:00+00:00', // RFC 3339
-      artwork:
-        'https://compote.slate.com/images/ea417857-5b23-47b9-9380-c1b70b33694f.jpg?crop=1180%2C842%2Cx0%2Cy0&width=1920', // Load artwork from the network
-      duration: 402, // Duration in seconds
-    });
+    await addMedia(podcasts[0]);
     await playAndPauseMedia();
   }, []);
 
   return (
     <View style={{flex: 1}}>
       <StatusBar barStyle={'dark-content'} backgroundColor="#F3F7FC" />
-      <ScrollView style={{flex: 1}}>
+      <ScrollView style={styles.scrollView}>
         <View style={styles.top}>
           <View style={{alignItems: 'center', gap: 15}}>
             <Image
               style={styles.image}
               resizeMode="contain"
               source={{
-                uri: URI,
+                uri: podcasts[0].artwork?.toString(),
               }}
             />
 
@@ -65,15 +55,14 @@ const PodcastInfoViewScreen = (props: PodcastInfoViewScreenProps) => {
                 gap: 10,
               }}>
               <IconEntypo name="progress-two" size={20} color="#F9BE66" />
-              <Text style={{color: '#C4C4C4'}}>Январь 12, 2019</Text>
+              <Text style={{color: '#C4C4C4'}}>
+                {formateDate(parseStrToDate2(podcast.date))}
+              </Text>
               <Text>🇲🇳</Text>
-              <Text style={{color: '#C4C4C4'}}>Буриад FM</Text>
+              <Text style={{color: '#C4C4C4'}}>{podcasts[0].album}</Text>
             </View>
 
-            <Text style={styles.titleText}>
-              Талын нюусанууд. «Буряад үнэн» Хэблэлэй байшанай шэнжэлхы удхатай
-              аяншалга
-            </Text>
+            <Text style={styles.titleText}>{podcasts[0].title}</Text>
           </View>
 
           <View
@@ -99,40 +88,8 @@ const PodcastInfoViewScreen = (props: PodcastInfoViewScreenProps) => {
           </View>
         </View>
 
-        <View
-          style={[
-            {
-              backgroundColor: 'grey',
-              margin: 10,
-              borderRadius: 10,
-              padding: 5,
-            },
-          ]}>
-          <Pressable
-            style={{backgroundColor: 'red'}}
-            onPress={() => Alert.alert('pressss')}>
-            <View>
-              <Text>
-                {fixedString.split(' ').map((str, index) => {
-                  return (
-                    <Text
-                      style={{
-                        color: 'black',
-                        paddingRight: 10,
-                        fontSize: 17,
-                        lineHeight: 32,
-                      }}
-                      key={index}
-                      onLongPress={() => Alert.alert(str)}>
-                      {`${str}${
-                        index !== fixedString.split(' ').lenght - 1 && ' '
-                      }`}
-                    </Text>
-                  );
-                })}
-              </Text>
-            </View>
-          </Pressable>
+        <View style={styles.bottom}>
+          <Text>{podcast.description}</Text>
         </View>
 
         <PodcastDetailViewScreen modalRef={bottomSheetModalRef} />
@@ -144,6 +101,7 @@ const PodcastInfoViewScreen = (props: PodcastInfoViewScreenProps) => {
 export default PodcastInfoViewScreen;
 
 const styles = StyleSheet.create({
+  scrollView: {flex: 1, backgroundColor: 'white'},
   container: {
     flex: 1,
   },
@@ -159,6 +117,7 @@ const styles = StyleSheet.create({
   },
   bottom: {
     padding: 15,
+    flex: 1,
   },
   titleText: {
     color: 'black',

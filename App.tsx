@@ -5,7 +5,7 @@ import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import Navigation from './navigation/stack';
-import {SetupService} from './services/SetupService';
+import {SetupService} from './src/services/SetupService';
 
 function App(): JSX.Element {
   return (
