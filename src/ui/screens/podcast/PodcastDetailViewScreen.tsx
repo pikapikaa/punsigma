@@ -5,12 +5,15 @@ import {
   BottomSheetFlatList,
   BottomSheetFlatListMethods,
 } from '@gorhom/bottom-sheet';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import {track} from '../../../../dummyData';
 import MediaPlayer from '../../components/ui/other/MediaPlayer';
 import {TrackInterface} from '../../../../dummyData';
 import BottomSheetModalWrap from '../../components/layouts/BottomSheetModalWrap';
+import PodcastTranslateViewScreen from './PodcastTranslateViewScreen';
 import {usePlayMedia} from '../../../application/playMedia';
+import {translateWord} from '../../../services/api';
 
 interface PodcastDetailViewScreenProps {
   modalRef: React.RefObject<BottomSheetModal>;
@@ -23,8 +26,15 @@ type FlatListRenderItem = {
 
 const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const [currentWord, setCurrentWord] = useState('');
+  const [translateText, setTranslateText] = useState('');
+
   const flatListRef = useRef<BottomSheetFlatListMethods>(null);
-  const {playAndPauseMedia, seekToMedia, getProgress} = usePlayMedia();
+
+  const {playAndPauseMedia, seekToMedia, getProgress, pauseMedia} =
+    usePlayMedia();
 
   const {position} = getProgress();
 
@@ -43,34 +53,93 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
     ({item, index}: FlatListRenderItem) => {
       const {text, progress} = item;
       const isHighlighted = index === currentIndex;
+
+      const onTranslateWord = async (word: string) => {
+        await pauseMedia();
+        //const resultWord = await translateWord(word);
+        setCurrentWord(word);
+        //setTranslateText(resultWord);
+        setModalVisible(true);
+      };
       return (
-        <Pressable onPress={() => seekToMedia(progress)}>
-          <Text style={[styles.text, isHighlighted && styles.highligthText]}>
-            {text}
-          </Text>
-        </Pressable>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flex: 1,
+          }}>
+          <Pressable
+            style={{width: '90%'}}
+            onPress={() => seekToMedia(progress)}>
+            <View
+              style={[
+                isHighlighted && {
+                  backgroundColor: '#F3F7FC',
+                  borderRadius: 10,
+                },
+              ]}>
+              <Text
+                style={[
+                  styles.text,
+                  isHighlighted && {fontWeight: 'bold', color: 'black'},
+                ]}>
+                {text.split(' ').map((str, index) => {
+                  return (
+                    <Text
+                      style={{
+                        lineHeight: 30,
+                      }}
+                      key={index}
+                      onPress={() => seekToMedia(progress)}
+                      onLongPress={() => onTranslateWord(str)}>
+                      {`${str}${index !== text.split(' ').lenght - 1 && ' '}`}
+                    </Text>
+                  );
+                })}
+              </Text>
+            </View>
+          </Pressable>
+
+          <View style={{width: 'auto'}}>
+            <Icon
+              name="chatbubble-ellipses-outline"
+              size={20}
+              color="#4E67BF"
+            />
+          </View>
+        </View>
       );
     },
     [currentIndex],
   );
 
   return (
-    <BottomSheetModalWrap modalRef={modalRef}>
-      <View style={styles.container}>
-        <View style={{paddingHorizontal: 15, flex: 1}}>
-          <Text style={styles.title}>if u feeling “Lost”</Text>
-          <BottomSheetFlatList
-            data={track}
-            keyExtractor={({id}) => id.toString()}
-            renderItem={renderItem}
-            ItemSeparatorComponent={() => <View style={{height: 20}} />}
-            ref={flatListRef}
-          />
-        </View>
+    <>
+      <BottomSheetModalWrap modalRef={modalRef}>
+        <View style={styles.container}>
+          <View style={{paddingHorizontal: 15, paddingTop: 25, flex: 1}}>
+            <Text style={styles.title}>if u feeling “Lost”</Text>
+            <BottomSheetFlatList
+              data={track}
+              keyExtractor={({id}) => id.toString()}
+              renderItem={renderItem}
+              ItemSeparatorComponent={() => <View style={{height: 20}} />}
+              ref={flatListRef}
+            />
+          </View>
 
-        <MediaPlayer onPress={playAndPauseMedia} seekTo={seekToMedia} />
-      </View>
-    </BottomSheetModalWrap>
+          <MediaPlayer onPress={playAndPauseMedia} seekTo={seekToMedia} />
+        </View>
+      </BottomSheetModalWrap>
+
+      <PodcastTranslateViewScreen
+        isVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        title={currentWord}
+        description={translateText}
+      />
+    </>
   );
 };
 
@@ -84,12 +153,12 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     color: 'black',
-    fontSize: 20,
-    marginBottom: 10,
+    fontSize: 30,
+    marginBottom: 15,
   },
   text: {
-    fontSize: 17,
-    color: 'black',
+    fontSize: 18,
+    color: 'grey',
     lineHeight: 30,
     padding: 5,
   },

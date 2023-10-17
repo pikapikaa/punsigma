@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, StyleSheet, Pressable, Text} from 'react-native';
+import {View, StyleSheet, Pressable, Text, Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Slider from '@react-native-community/slider';
 import {usePlayMedia} from '../../../../application/playMedia';
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 1,
-    backgroundColor: 'white',
+    backgroundColor: Platform.OS === 'ios' ? 'white' : undefined,
   },
   progressContainer: {
     alignItems: 'center',
