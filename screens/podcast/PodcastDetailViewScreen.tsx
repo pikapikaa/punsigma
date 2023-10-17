@@ -5,12 +5,12 @@ import {
   BottomSheetFlatList,
   BottomSheetFlatListMethods,
 } from '@gorhom/bottom-sheet';
-import TrackPlayer, {State, useProgress} from 'react-native-track-player';
 
 import {track} from '../../dummyData';
 import MediaPlayer from '../../components/ui/other/MediaPlayer';
 import {TrackInterface} from '../../dummyData';
 import BottomSheetModalWrap from '../../components/layouts/BottomSheetModalWrap';
+import {usePlayMedia} from '../../src/application/playMedia';
 
 interface PodcastDetailViewScreenProps {
   modalRef: React.RefObject<BottomSheetModal>;
@@ -24,8 +24,9 @@ type FlatListRenderItem = {
 const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<BottomSheetFlatListMethods>(null);
+  const {playAndPauseMedia, seekToMedia, getProgress} = usePlayMedia();
 
-  const {position} = useProgress();
+  const {position} = getProgress();
 
   useEffect(() => {
     const index = track.findIndex(el => el.progress === Math.floor(position));
@@ -38,25 +39,12 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
     }
   }, [position]);
 
-  const startAndStop = async () => {
-    const state = await TrackPlayer.getState();
-    if (state === State.Playing) {
-      await TrackPlayer.pause();
-    } else {
-      await TrackPlayer.play();
-    }
-  };
-
-  const seekTo = async (t: number) => {
-    await TrackPlayer.seekTo(t);
-  };
-
   const renderItem = useCallback(
     ({item, index}: FlatListRenderItem) => {
       const {text, progress} = item;
       const isHighlighted = index === currentIndex;
       return (
-        <Pressable onPress={() => seekTo(progress)}>
+        <Pressable onPress={() => seekToMedia(progress)}>
           <Text style={[styles.text, isHighlighted && styles.highligthText]}>
             {text}
           </Text>
@@ -80,7 +68,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
           />
         </View>
 
-        <MediaPlayer onPress={startAndStop} seekTo={seekTo} />
+        <MediaPlayer onPress={playAndPauseMedia} seekTo={seekToMedia} />
       </View>
     </BottomSheetModalWrap>
   );

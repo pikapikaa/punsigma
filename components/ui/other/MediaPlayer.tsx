@@ -2,7 +2,7 @@ import * as React from 'react';
 import {View, StyleSheet, Pressable, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Slider from '@react-native-community/slider';
-import {State, useProgress, usePlaybackState} from 'react-native-track-player';
+import {usePlayMedia} from '../../../src/application/playMedia';
 
 interface MediaPlayerProps {
   onPress(): void;
@@ -10,9 +10,8 @@ interface MediaPlayerProps {
 }
 
 const MediaPlayer = ({onPress, seekTo}: MediaPlayerProps) => {
-  const playerState = usePlaybackState();
-  const isPlaying = playerState === State.Playing;
-  const {position, duration} = useProgress();
+  const {getProgress, isPlaying} = usePlayMedia();
+  const {position, duration} = getProgress();
 
   function fancyTimeFormat(seconds: number) {
     const hrs = ~~(seconds / 3600);
@@ -51,7 +50,7 @@ const MediaPlayer = ({onPress, seekTo}: MediaPlayerProps) => {
         </View>
         <Pressable onPress={onPress}>
           <Icon
-            name={isPlaying ? 'pause-circle-outline' : 'play-circle-outline'}
+            name={isPlaying() ? 'pause-circle-outline' : 'play-circle-outline'}
             size={80}
             color="#4E67BF"
           />
