@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState, useRef} from 'react';
-import {Text, View, StyleSheet, Pressable} from 'react-native';
+import {Text, View, StyleSheet, Pressable, Platform} from 'react-native';
 import {
   BottomSheetModal,
   BottomSheetFlatList,
@@ -79,22 +79,35 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
                   borderRadius: 10,
                 },
               ]}>
-              <Text
-                style={[
-                  styles.text,
-                  isHighlighted && {fontWeight: 'bold', color: 'black'},
-                ]}>
+              <Text>
                 {text.split(' ').map((str, index) => {
                   return (
-                    <Text
-                      style={{
-                        lineHeight: 30,
-                      }}
+                    <Pressable
+                      android_ripple={{color: 'blue'}}
                       key={index}
-                      onPress={() => seekToMedia(progress)}
-                      onLongPress={() => onTranslateWord(str)}>
-                      {`${str}${index !== text.split(' ').lenght - 1 && ' '}`}
-                    </Text>
+                      style={({pressed}) => [
+                        {
+                          backgroundColor:
+                            pressed && Platform.OS === 'ios'
+                              ? 'blue'
+                              : undefined,
+                        },
+                        {
+                          opacity: pressed && Platform.OS === 'ios' ? 0.5 : 1,
+                        },
+                      ]}
+                      onPress={() => onTranslateWord(str)}>
+                      <Text
+                        style={[
+                          styles.text,
+                          isHighlighted && {
+                            fontWeight: 'bold',
+                            color: 'black',
+                          },
+                        ]}>
+                        {`${str}${index !== text.split(' ').lenght - 1 && ' '}`}
+                      </Text>
+                    </Pressable>
                   );
                 })}
               </Text>
@@ -160,7 +173,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'grey',
     lineHeight: 30,
-    padding: 5,
   },
   highligthText: {
     backgroundColor: '#F3F7FC',

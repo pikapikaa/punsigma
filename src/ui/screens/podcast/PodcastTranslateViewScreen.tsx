@@ -18,7 +18,11 @@ const PodcastTranslateViewScreen = ({
   description,
 }: PodcastTranslateViewScreenProps) => {
   return (
-    <Modal isVisible={isVisible} onBackdropPress={() => setModalVisible(false)}>
+    <Modal
+      animationIn={'fadeIn'}
+      animationOut={'fadeOut'}
+      isVisible={isVisible}
+      onBackdropPress={() => setModalVisible(false)}>
       <View style={styles.content}>
         <Text style={styles.modalText}>{title}</Text>
         <ScrollView>
