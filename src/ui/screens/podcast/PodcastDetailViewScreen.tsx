@@ -30,7 +30,7 @@ const PodcastDetailViewScreen = ({
   setIsOpen,
 }: PodcastDetailViewScreenProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const [currentWord, setCurrentWord] = useState('');
   const [translateText, setTranslateText] = useState('');
@@ -53,11 +53,19 @@ const PodcastDetailViewScreen = ({
     }
   }, [position]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await translateWord(currentWord);
+      setTranslateText(result);
+    };
+    if (isModalVisible && currentWord) {
+      fetchData();
+    }
+  }, [isModalVisible, currentWord]);
+
   const onTranslateWord = async (word: string) => {
     await pauseMedia();
-    //const resultWord = await translateWord(word);
     setCurrentWord(word);
-    //setTranslateText(resultWord);
     setModalVisible(true);
   };
 
@@ -96,7 +104,7 @@ const PodcastDetailViewScreen = ({
       </BottomSheetModalWrap>
 
       <PodcastTranslateViewScreen
-        isVisible={modalVisible}
+        isVisible={isModalVisible}
         setModalVisible={setModalVisible}
         title={currentWord}
         description={translateText}
