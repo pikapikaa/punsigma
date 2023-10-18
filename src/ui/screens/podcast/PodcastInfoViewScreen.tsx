@@ -1,4 +1,4 @@
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {
   Text,
   View,
@@ -16,11 +16,19 @@ import PodcastDetailViewScreen from './PodcastDetailViewScreen';
 import {usePlayMedia} from '../../../application/playMedia';
 import {podcasts} from '../../../services/fakeData';
 import {formateDate, parseStrToDate2} from '../../../lib/datetime';
+import {useModalBackHandler} from '../../../services/hooks/useModalBackHandler';
 
-const PodcastInfoViewScreen = () => {
+const PodcastInfoViewScreen = ({navigation}) => {
+  const [isOpen, setIsOpen] = useState(false);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const {addMedia, playAndPauseMedia, resetMedia} = usePlayMedia();
   const podcast = podcasts[0];
+
+  useModalBackHandler(
+    isOpen,
+    () => bottomSheetModalRef.current?.close(),
+    () => navigation.goBack(),
+  );
 
   const handlePresentModalPress = useCallback(async () => {
     bottomSheetModalRef.current?.present();
@@ -88,7 +96,10 @@ const PodcastInfoViewScreen = () => {
           <Text>{podcast.description}</Text>
         </View>
 
-        <PodcastDetailViewScreen modalRef={bottomSheetModalRef} />
+        <PodcastDetailViewScreen
+          modalRef={bottomSheetModalRef}
+          setIsOpen={setIsOpen}
+        />
       </ScrollView>
     </View>
   );

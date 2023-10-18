@@ -17,6 +17,7 @@ import {translateWord} from '../../../services/api';
 
 interface PodcastDetailViewScreenProps {
   modalRef: React.RefObject<BottomSheetModal>;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 type FlatListRenderItem = {
@@ -24,7 +25,10 @@ type FlatListRenderItem = {
   index: number;
 };
 
-const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
+const PodcastDetailViewScreen = ({
+  modalRef,
+  setIsOpen,
+}: PodcastDetailViewScreenProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -129,7 +133,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
 
   return (
     <>
-      <BottomSheetModalWrap modalRef={modalRef}>
+      <BottomSheetModalWrap modalRef={modalRef} setIsOpen={setIsOpen}>
         <View style={styles.container}>
           <View style={{paddingHorizontal: 15, paddingTop: 25, flex: 1}}>
             <Text style={styles.title}>if u feeling “Lost”</Text>
