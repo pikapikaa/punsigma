@@ -1,11 +1,10 @@
 import React, {useCallback, useEffect, useState, useRef} from 'react';
-import {Text, View, StyleSheet, Pressable, Platform} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 import {
   BottomSheetModal,
   BottomSheetFlatList,
   BottomSheetFlatListMethods,
 } from '@gorhom/bottom-sheet';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 import {track} from '../../../../dummyData';
 import MediaPlayer from '../../components/ui/other/MediaPlayer';
@@ -14,6 +13,7 @@ import BottomSheetModalWrap from '../../components/layouts/BottomSheetModalWrap'
 import PodcastTranslateViewScreen from './PodcastTranslateViewScreen';
 import {usePlayMedia} from '../../../application/playMedia';
 import {translateWord} from '../../../services/api';
+import PodcastTextRowItem from '../../components/podcast/PodcastTextRowItem';
 
 interface PodcastDetailViewScreenProps {
   modalRef: React.RefObject<BottomSheetModal>;
@@ -53,79 +53,24 @@ const PodcastDetailViewScreen = ({
     }
   }, [position]);
 
+  const onTranslateWord = async (word: string) => {
+    await pauseMedia();
+    //const resultWord = await translateWord(word);
+    setCurrentWord(word);
+    //setTranslateText(resultWord);
+    setModalVisible(true);
+  };
+
   const renderItem = useCallback(
     ({item, index}: FlatListRenderItem) => {
-      const {text, progress} = item;
-      const isHighlighted = index === currentIndex;
-
-      const onTranslateWord = async (word: string) => {
-        await pauseMedia();
-        //const resultWord = await translateWord(word);
-        setCurrentWord(word);
-        //setTranslateText(resultWord);
-        setModalVisible(true);
-      };
       return (
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flex: 1,
-          }}>
-          <Pressable
-            style={{width: '90%'}}
-            onPress={() => seekToMedia(progress)}>
-            <View
-              style={[
-                isHighlighted && {
-                  backgroundColor: '#F3F7FC',
-                  borderRadius: 10,
-                },
-              ]}>
-              <Text>
-                {text.split(' ').map((str, index) => {
-                  return (
-                    <Pressable
-                      android_ripple={{color: 'blue'}}
-                      key={index}
-                      style={({pressed}) => [
-                        {
-                          backgroundColor:
-                            pressed && Platform.OS === 'ios'
-                              ? 'blue'
-                              : undefined,
-                        },
-                        {
-                          opacity: pressed && Platform.OS === 'ios' ? 0.5 : 1,
-                        },
-                      ]}
-                      onPress={() => onTranslateWord(str)}>
-                      <Text
-                        style={[
-                          styles.text,
-                          isHighlighted && {
-                            fontWeight: 'bold',
-                            color: 'black',
-                          },
-                        ]}>
-                        {`${str}${index !== text.split(' ').lenght - 1 && ' '}`}
-                      </Text>
-                    </Pressable>
-                  );
-                })}
-              </Text>
-            </View>
-          </Pressable>
-
-          <View style={{width: 'auto'}}>
-            <Icon
-              name="chatbubble-ellipses-outline"
-              size={20}
-              color="#4E67BF"
-            />
-          </View>
-        </View>
+        <PodcastTextRowItem
+          item={item}
+          index={index}
+          currentIndex={currentIndex}
+          onPressSentence={number => seekToMedia(number)}
+          onPressWord={onTranslateWord}
+        />
       );
     },
     [currentIndex],
