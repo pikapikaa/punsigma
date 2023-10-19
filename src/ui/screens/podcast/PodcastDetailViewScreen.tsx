@@ -14,6 +14,7 @@ import PodcastTranslateViewScreen from './PodcastTranslateViewScreen';
 import {usePlayMedia} from '../../../application/playMedia';
 import {translateWord} from '../../../services/api';
 import PodcastTextRowItem from '../../components/podcast/PodcastTextRowItem';
+import {removePunctuation} from '../../../lib/util';
 
 interface PodcastDetailViewScreenProps {
   modalRef: React.RefObject<BottomSheetModal>;
@@ -42,8 +43,21 @@ const PodcastDetailViewScreen = ({
 
   const {position} = getProgress();
 
+  const syncLyric = (time: number) => {
+    const scores: number[] = [];
+    track.forEach(({progress}) => {
+      const score = time - progress;
+      if (score >= 0) scores.push(score);
+    });
+
+    if (scores.length === 0) return -1;
+
+    const closest = Math.min(...scores);
+    return scores.indexOf(closest);
+  };
+
   useEffect(() => {
-    const index = track.findIndex(el => el.progress === Math.floor(position));
+    const index = syncLyric(position);
     if (index > -1) {
       setCurrentIndex(index);
       flatListRef?.current?.scrollToIndex({
@@ -65,7 +79,8 @@ const PodcastDetailViewScreen = ({
 
   const onTranslateWord = async (word: string) => {
     await pauseMedia();
-    setCurrentWord(word);
+    const clearWord = removePunctuation(word);
+    setCurrentWord(clearWord);
     setModalVisible(true);
   };
 

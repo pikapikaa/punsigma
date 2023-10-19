@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Text, View, StyleSheet, Pressable, Platform} from 'react-native';
-import {removePunctuation} from '../../../lib/util';
 
 type PodcastTextRightRowItemProps = {
   isHighlighted: boolean;
@@ -19,16 +18,9 @@ const PodcastTextRightRowItem = ({
 }: PodcastTextRightRowItemProps) => {
   return (
     <Pressable style={{width: '90%'}} onPress={() => onPressSentence(progress)}>
-      <View
-        style={[
-          isHighlighted && {
-            backgroundColor: '#F3F7FC',
-            borderRadius: 10,
-          },
-        ]}>
+      <View style={[isHighlighted && styles.highligthView]}>
         <Text>
           {text.split(' ').map((str, index) => {
-            const word = removePunctuation(str);
             return (
               <Pressable
                 android_ripple={{color: 'blue'}}
@@ -42,7 +34,7 @@ const PodcastTextRightRowItem = ({
                     opacity: pressed && Platform.OS === 'ios' ? 0.5 : 1,
                   },
                 ]}
-                onPress={() => onPressWord(word)}>
+                onPress={() => onPressWord(str)}>
                 <Text
                   style={[
                     styles.text,
@@ -69,6 +61,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'grey',
     lineHeight: 30,
+  },
+  highligthView: {
+    backgroundColor: '#F3F7FC',
+    borderRadius: 10,
+    padding: 5,
   },
   highligthText: {
     backgroundColor: '#F3F7FC',
