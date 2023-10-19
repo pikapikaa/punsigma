@@ -34,7 +34,8 @@ const PodcastTextRightRowItem = ({
                     opacity: pressed && Platform.OS === 'ios' ? 0.5 : 1,
                   },
                 ]}
-                onPress={() => onPressWord(str)}>
+                onLongPress={() => onPressWord(str)}
+                onPress={() => onPressSentence(progress)}>
                 <Text
                   style={[
                     styles.text,
