@@ -17,6 +17,7 @@ import {usePlayMedia} from '../../../application/playMedia';
 import {podcasts} from '../../../services/fakeData';
 import {formateDate, parseStrToDate2} from '../../../lib/datetime';
 import {useModalBackHandler} from '../../../services/hooks/useModalBackHandler';
+import SafeAreaWrap from '../../components/layouts/SafeAreaWrap';
 
 const PodcastInfoViewScreen = ({navigation}) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,70 +39,74 @@ const PodcastInfoViewScreen = ({navigation}) => {
   }, []);
 
   return (
-    <View style={{flex: 1}}>
-      <StatusBar barStyle={'dark-content'} backgroundColor="#F3F7FC" />
-      <ScrollView style={styles.scrollView}>
-        <View style={styles.top}>
-          <View style={{alignItems: 'center', gap: 15}}>
-            <Image
-              style={styles.image}
-              resizeMode="contain"
-              source={{
-                uri: podcasts[0].artwork?.toString(),
-              }}
-            />
+    <>
+      <View style={{flex: 1}}>
+        {/* <StatusBar barStyle={'dark-content'} backgroundColor="#F3F7FC" /> */}
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.top}>
+            <View style={{alignItems: 'center', gap: 15}}>
+              <Image
+                style={styles.image}
+                resizeMode="contain"
+                source={{
+                  uri: podcasts[0].artwork?.toString(),
+                }}
+              />
+
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-around',
+                  gap: 10,
+                }}>
+                <IconEntypo name="progress-two" size={20} color="#F9BE66" />
+                <Text style={{color: '#C4C4C4'}}>
+                  {formateDate(parseStrToDate2(podcast.date))}
+                </Text>
+                <Text>🇲🇳</Text>
+                <Text style={{color: '#C4C4C4'}}>{podcasts[0].album}</Text>
+              </View>
+
+              <Text style={styles.titleText}>{podcasts[0].title}</Text>
+            </View>
 
             <View
               style={{
+                flex: 1,
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-around',
-                gap: 10,
               }}>
-              <IconEntypo name="progress-two" size={20} color="#F9BE66" />
-              <Text style={{color: '#C4C4C4'}}>
-                {formateDate(parseStrToDate2(podcast.date))}
-              </Text>
-              <Text>🇲🇳</Text>
-              <Text style={{color: '#C4C4C4'}}>{podcasts[0].album}</Text>
-            </View>
-
-            <Text style={styles.titleText}>{podcasts[0].title}</Text>
-          </View>
-
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-around',
-            }}>
-            <View style={{justifyContent: 'flex-end'}}>
-              <Icon name="download-outline" size={20} color="#4E67BF" />
-            </View>
-            <Pressable style={styles.button} onPress={handlePresentModalPress}>
-              <View
-                style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
-                <Icon name="play" size={20} color="#FDFEFD" />
-                <Text style={styles.buttonText}>Play podcast</Text>
+              <View style={{justifyContent: 'flex-end'}}>
+                <Icon name="download-outline" size={20} color="#4E67BF" />
               </View>
-            </Pressable>
-            <View style={{justifyContent: 'flex-end'}}>
-              <Icon name="heart-outline" size={20} color="#4E67BF" />
+              <Pressable
+                style={styles.button}
+                onPress={handlePresentModalPress}>
+                <View
+                  style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
+                  <Icon name="play" size={20} color="#FDFEFD" />
+                  <Text style={styles.buttonText}>Play podcast</Text>
+                </View>
+              </Pressable>
+              <View style={{justifyContent: 'flex-end'}}>
+                <Icon name="heart-outline" size={20} color="#4E67BF" />
+              </View>
             </View>
           </View>
-        </View>
 
-        <View style={styles.bottom}>
-          <Text>{podcast.description}</Text>
-        </View>
+          <View style={styles.bottom}>
+            <Text>{podcast.description}</Text>
+          </View>
 
-        <PodcastDetailViewScreen
-          modalRef={bottomSheetModalRef}
-          setIsOpen={setIsOpen}
-        />
-      </ScrollView>
-    </View>
+          <PodcastDetailViewScreen
+            modalRef={bottomSheetModalRef}
+            setIsOpen={setIsOpen}
+          />
+        </ScrollView>
+      </View>
+    </>
   );
 };
 

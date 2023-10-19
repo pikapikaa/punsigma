@@ -13,23 +13,20 @@ function MainStack() {
       screenOptions={() => {
         return {
           headerShadowVisible: false,
+          headerStyle: {backgroundColor: 'white'},
           headerTintColor: 'black',
+          headerShown: false,
         };
       }}>
-      <Stack.Screen
-        name="Main"
-        component={MainScreen}
-        options={{title: 'Главная'}}
-      />
+      <Stack.Screen name="Main" component={MainScreen} />
       <Stack.Screen
         name="PodcastInfoView"
         component={PodcastInfoViewScreen}
         options={{
-          title: '',
           headerStyle: {backgroundColor: '#F3F7FC'},
-          headerShadowVisible: false,
+          headerShown: true,
+          title: '',
           headerBackTitleVisible: false,
-          headerTitleAlign: 'center',
         }}
       />
     </Stack.Navigator>

@@ -1,21 +1,25 @@
-import * as React from 'react';
-import {Text, View, StyleSheet, Button} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
 
-interface MainScreenProps {}
+import SafeAreaWrap from '../../components/layouts/SafeAreaWrap';
+import MainTitleView from '../../components/main/MainTitleView';
+import SearchView from '../../components/main/SearchView';
+import {ScrollView} from 'react-native-gesture-handler';
+import FilterScrollView from '../../components/main/FilterScrollView';
+import RecentlyPlayedView from '../../components/main/RecentlyPlayedView';
 
-const MainScreen = (props: MainScreenProps) => {
-  const navigation = useNavigation();
+const MainScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>MainScreen</Text>
-      <Button
-        onPress={() => {
-          navigation.navigate('PodcastInfoView');
-        }}
-        title="onPress"
-      />
-    </View>
+    <SafeAreaWrap>
+      <ScrollView style={{flex: 1}}>
+        <View style={styles.container}>
+          <MainTitleView />
+          <SearchView />
+          <FilterScrollView />
+          <RecentlyPlayedView />
+        </View>
+      </ScrollView>
+    </SafeAreaWrap>
   );
 };
 
@@ -25,6 +29,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    backgroundColor: 'white',
+    gap: 30,
   },
 });
