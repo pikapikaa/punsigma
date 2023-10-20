@@ -10,6 +10,7 @@ import SectionView from '../../components/main/SectionView';
 import {recentlyPodcasts} from '../../../services/fakeData';
 import {SCREEN_WIDTH} from '@gorhom/bottom-sheet';
 import SectionItemView from '../../components/main/SectionItemView';
+import SectionItemCoverView from '../../components/main/SectionItemCoverView';
 
 const MainScreen = ({navigation}) => {
   function onPressPodcast() {
@@ -29,6 +30,15 @@ const MainScreen = ({navigation}) => {
             numColumns={Math.ceil(recentlyPodcasts.length / 2)}
             renderItem={({item}) => (
               <SectionItemView item={item} onPress={onPressPodcast} />
+            )}
+          />
+
+          <SectionView
+            title="Trending Podcasts"
+            data={recentlyPodcasts}
+            numColumns={Math.ceil(recentlyPodcasts.length / 1)}
+            renderItem={({item}) => (
+              <SectionItemCoverView item={item} onPress={onPressPodcast} />
             )}
           />
         </View>

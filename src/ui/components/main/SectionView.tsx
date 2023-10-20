@@ -12,7 +12,7 @@ interface SectionViewProps {
   renderItem: ListRenderItem<any> | null | undefined;
   data: Array<any>;
   title: string;
-  numColumns: number;
+  numColumns?: number;
 }
 
 const SectionView = ({
