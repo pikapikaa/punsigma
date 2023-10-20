@@ -111,6 +111,7 @@ const PodcastDetailViewScreen = ({
               renderItem={renderItem}
               ItemSeparatorComponent={() => <View style={{height: 20}} />}
               ref={flatListRef}
+              onScrollToIndexFailed={() => {}}
             />
           </View>
 
