@@ -1,7 +1,9 @@
 import {SCREEN_WIDTH} from '@gorhom/bottom-sheet';
 import * as React from 'react';
 import {Text, View, StyleSheet, Pressable, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+
+import RemainingTime from './RemainingTimeView';
+import PlayIconView from './PlayIconView';
 
 interface SectionItemViewProps {
   item: any;
@@ -21,30 +23,12 @@ const SectionItemView = ({item, onPress}: SectionItemViewProps) => {
             <Image source={{uri: item.url}} style={styles.image} />
             <View style={{justifyContent: 'center', gap: 10}}>
               <Text style={styles.text}>{item.text}</Text>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  gap: 8,
-                  alignItems: 'center',
-                }}>
-                <Icon name="time-outline" size={15} color="grey" />
-                <Text style={styles.time}>16 mins remaining</Text>
-              </View>
+              <RemainingTime />
             </View>
           </View>
         </Pressable>
 
-        <View
-          style={{
-            width: 40,
-            height: 40,
-            borderRadius: 40 / 2,
-            backgroundColor: '#c7f4c2',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Icon name="play" size={20} color="black" />
-        </View>
+        <PlayIconView />
       </View>
     </View>
   );
