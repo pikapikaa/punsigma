@@ -21,7 +21,7 @@ const MainScreen = () => {
   const {playMedia} = usePlayMedia();
   const navigation = useNavigation();
 
-  const onShowInfo = useCallback(async () => {
+  const onShowInfo = useCallback(() => {
     navigation.navigate('PodcastInfoView');
   }, []);
 
