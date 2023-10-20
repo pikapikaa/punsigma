@@ -7,15 +7,16 @@ import PlayIconView from './PlayIconView';
 
 interface SectionItemViewProps {
   item: any;
-  onPress: () => void;
+  showInfo: () => void;
+  play: () => void;
 }
 
-const SectionItemView = ({item, onPress}: SectionItemViewProps) => {
+const SectionItemView = ({item, play, showInfo}: SectionItemViewProps) => {
   return (
     <View style={styles.container}>
-      <Pressable onPress={onPress}>
-        <View style={styles.row}>
-          <View style={{width: '60%'}}>
+      <View style={styles.row}>
+        <Pressable onPress={showInfo} style={{width: '60%'}}>
+          <View>
             <View
               style={{
                 flexDirection: 'row',
@@ -28,10 +29,11 @@ const SectionItemView = ({item, onPress}: SectionItemViewProps) => {
               </View>
             </View>
           </View>
-
+        </Pressable>
+        <Pressable onPress={play}>
           <PlayIconView />
-        </View>
-      </Pressable>
+        </Pressable>
+      </View>
     </View>
   );
 };

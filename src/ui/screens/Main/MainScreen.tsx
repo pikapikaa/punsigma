@@ -13,13 +13,19 @@ import SectionItemCoverView from '../../components/main/SectionItemCoverView';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import PodcastDetailViewScreen from '../podcast/PodcastDetailViewScreen';
 import {usePlayMedia} from '../../../application/playMedia';
+import {useNavigation} from '@react-navigation/native';
 
 const MainScreen = () => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const [isOpen, setIsOpen] = useState(false);
   const {playMedia} = usePlayMedia();
+  const navigation = useNavigation();
 
-  const onPressPodcast = useCallback(async () => {
+  const onShowInfo = useCallback(async () => {
+    navigation.navigate('PodcastInfoView');
+  }, []);
+
+  const onPlay = useCallback(async () => {
     await playMedia(bottomSheetModalRef, podcasts[0]);
   }, []);
 
@@ -35,7 +41,11 @@ const MainScreen = () => {
             data={recentlyPodcasts}
             numColumns={Math.ceil(recentlyPodcasts.length / 2)}
             renderItem={({item}) => (
-              <SectionItemView item={item} onPress={onPressPodcast} />
+              <SectionItemView
+                item={item}
+                play={onPlay}
+                showInfo={onShowInfo}
+              />
             )}
           />
 
@@ -44,7 +54,11 @@ const MainScreen = () => {
             data={recentlyPodcasts}
             numColumns={Math.ceil(recentlyPodcasts.length / 1)}
             renderItem={({item}) => (
-              <SectionItemCoverView item={item} onPress={onPressPodcast} />
+              <SectionItemCoverView
+                item={item}
+                play={onPlay}
+                showInfo={onShowInfo}
+              />
             )}
           />
         </View>
@@ -63,5 +77,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     gap: 30,
+    paddingTop: 20,
   },
 });

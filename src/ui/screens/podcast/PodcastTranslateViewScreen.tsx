@@ -19,6 +19,7 @@ const PodcastTranslateViewScreen = ({
 }: PodcastTranslateViewScreenProps) => {
   return (
     <Modal
+      hideModalContentWhileAnimating
       animationIn={'fadeIn'}
       animationOut={'fadeOut'}
       isVisible={isVisible}

@@ -7,13 +7,14 @@ import PlayIconView from './PlayIconView';
 
 interface SectionItemViewProps {
   item: any;
-  onPress: () => void;
+  showInfo: () => void;
+  play?: () => void;
 }
 
-const SectionItemCoverView = ({item, onPress}: SectionItemViewProps) => {
+const SectionItemCoverView = ({item, showInfo, play}: SectionItemViewProps) => {
   return (
     <View style={styles.container}>
-      <Pressable style={{}} onPress={onPress}>
+      <Pressable style={{}} onPress={showInfo}>
         <View style={{gap: 10}}>
           <Image source={{uri: item.url}} style={styles.image} />
           <View
@@ -36,7 +37,7 @@ export default SectionItemCoverView;
 
 const styles = StyleSheet.create({
   container: {
-    width: SCREEN_WIDTH / 3,
+    width: 150,
     marginStart: 15,
     marginRight: 7,
   },
