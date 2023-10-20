@@ -2,4 +2,5 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Getting Started
 
-![Alt text](<ScreenShot.png>)
+![Alt text](./assets/images/ScreenShot.png)
+![Alt text](./assets/images/ScreenShot2.png)
