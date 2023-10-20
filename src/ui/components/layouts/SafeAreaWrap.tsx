@@ -12,5 +12,5 @@ const SafeAreawrap = ({children}: SafeAreawrapProps) => {
 export default SafeAreawrap;
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: 'white'},
+  container: {flex: 1, backgroundColor: '#fdfbf7'},
 });
