@@ -38,5 +38,9 @@ export function useMediaPlayer(): MediaPlayerService {
       const playerState = usePlaybackState();
       return playerState === State.Playing;
     },
+
+    getState() {
+      return usePlaybackState();
+    },
   };
 }

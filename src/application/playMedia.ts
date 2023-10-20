@@ -43,6 +43,10 @@ export function usePlayMedia() {
     return mediaPlayer.isPlaying();
   }
 
+  function getState() {
+    return mediaPlayer.getState();
+  }
+
   return {
     playAndPauseMedia,
     pauseMedia,
@@ -52,5 +56,6 @@ export function usePlayMedia() {
     getProgress,
     isPlaying,
     playInit,
+    getState,
   };
 }

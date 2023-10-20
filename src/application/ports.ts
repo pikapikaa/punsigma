@@ -1,4 +1,4 @@
-import {Progress} from 'react-native-track-player';
+import {Progress, State} from 'react-native-track-player';
 import {Podcast} from '../domain/Podcast';
 
 export interface MediaPlayerService {
@@ -9,4 +9,5 @@ export interface MediaPlayerService {
   seekTo(time: number): void;
   getProgress(): Progress;
   isPlaying(): boolean;
+  getState(): State;
 }
