@@ -13,23 +13,25 @@ interface SectionItemViewProps {
 const SectionItemView = ({item, onPress}: SectionItemViewProps) => {
   return (
     <View style={styles.container}>
-      <View style={styles.row}>
-        <Pressable style={{width: '60%'}} onPress={onPress}>
-          <View
-            style={{
-              flexDirection: 'row',
-              gap: 10,
-            }}>
-            <Image source={{uri: item.url}} style={styles.image} />
-            <View style={{justifyContent: 'center', gap: 10}}>
-              <Text style={styles.text}>{item.text}</Text>
-              <RemainingTime />
+      <Pressable onPress={onPress}>
+        <View style={styles.row}>
+          <View style={{width: '60%'}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                gap: 10,
+              }}>
+              <Image source={{uri: item.url}} style={styles.image} />
+              <View style={{justifyContent: 'center', gap: 10}}>
+                <Text style={styles.text}>{item.text}</Text>
+                <RemainingTime />
+              </View>
             </View>
           </View>
-        </Pressable>
 
-        <PlayIconView />
-      </View>
+          <PlayIconView />
+        </View>
+      </Pressable>
     </View>
   );
 };
