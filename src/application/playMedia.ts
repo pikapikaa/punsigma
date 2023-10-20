@@ -1,8 +1,19 @@
 import {useMediaPlayer} from '../services/mediaPlayerAdapter';
-import { Podcast } from '../domain/Podcast';
+import {Podcast} from '../domain/Podcast';
+import {BottomSheetModalMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
 
 export function usePlayMedia() {
   const mediaPlayer = useMediaPlayer();
+
+  async function playInit(
+    bottomSheetModalRef: React.RefObject<BottomSheetModalMethods>,
+    podcast: Podcast,
+  ) {
+    bottomSheetModalRef.current?.present();
+    await resetMedia();
+    await addMedia(podcast);
+    await playAndPauseMedia();
+  }
 
   async function playAndPauseMedia() {
     mediaPlayer.playAndPause();
@@ -40,5 +51,6 @@ export function usePlayMedia() {
     resetMedia,
     getProgress,
     isPlaying,
+    playInit,
   };
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -7,16 +7,21 @@ import MainTitleView from '../../components/main/MainTitleView';
 import SearchView from '../../components/main/SearchView';
 import FilterScrollView from '../../components/main/FilterScrollView';
 import SectionView from '../../components/main/SectionView';
-import {recentlyPodcasts} from '../../../services/fakeData';
+import {podcasts, recentlyPodcasts} from '../../../services/fakeData';
 import SectionItemView from '../../components/main/SectionItemView';
 import SectionItemCoverView from '../../components/main/SectionItemCoverView';
-import {useNavigation} from '@react-navigation/native';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
+import PodcastDetailViewScreen from '../podcast/PodcastDetailViewScreen';
+import {usePlayMedia} from '../../../application/playMedia';
 
 const MainScreen = () => {
-  const navigation = useNavigation();
-  function onPressPodcast() {
-    navigation.navigate('PodcastInfoView');
-  }
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const {playInit} = usePlayMedia();
+
+  const onPressPodcast = useCallback(() => {
+    playInit(bottomSheetModalRef, podcasts[0]);
+  }, []);
 
   return (
     <SafeAreaWrap>
@@ -44,6 +49,10 @@ const MainScreen = () => {
           />
         </View>
       </ScrollView>
+      <PodcastDetailViewScreen
+        modalRef={bottomSheetModalRef}
+        setIsOpen={setIsOpen}
+      />
     </SafeAreaWrap>
   );
 };
