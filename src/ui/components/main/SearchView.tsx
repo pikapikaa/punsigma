@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     padding: 15,
     paddingVertical: 17,
     borderRadius: 7,
+    marginHorizontal: 15,
   },
   placeholderText: {
     color: '#98958b',

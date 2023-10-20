@@ -22,7 +22,7 @@ export const recentlyPodcasts = [
   {
     id: 2,
     text: 'Mr. Robot. "Eps1.1_ones-and-zer0es.mpeg"',
-    url: `https://www.billboard.com/wp-content/uploads/media/Joey-Badass-in-Mr-Robot-press-photo-2017-billboard-1548.jpg?w=1024`,
+    url: `https://s.yimg.com/ny/api/res/1.2/NtEgwKL6Ro7gdQV.3oKKpg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQzNA--/https://media.zenfs.com/en-us/homerun/tvline.com/035d051c00ecc1104cc20e82d4517fa6`,
   },
   {
     id: 3,
@@ -32,6 +32,11 @@ export const recentlyPodcasts = [
   {
     id: 4,
     text: 'balv',
-    url: `https://www.billboard.com/wp-content/uploads/media/Joey-Badass-in-Mr-Robot-press-photo-2017-billboard-1548.jpg?w=1024`,
+    url: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR601_nbvoLXfF7jMnQ-N3BYhIC4ZtSiSoqXA&usqp=CAU`,
+  },
+  {
+    id: 5,
+    text: "11 'Mr. Robot' Episodes To Rewatch After That Series Finale Reveal",
+    url: `https://imgix.bustle.com/uploads/image/2019/12/23/c33f7c88-073a-4d7c-bada-d272a7c8759b-screen-shot-2019-12-22-at-23740-pm-1.png?w=1200&h=630&fit=crop&crop=faces&fm=jpg`,
   },
 ];

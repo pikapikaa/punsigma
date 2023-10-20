@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginEnd: 10,
     overflow: 'hidden',
+    marginStart: 15,
   },
   text: {color: '#7d7a6f'},
 });

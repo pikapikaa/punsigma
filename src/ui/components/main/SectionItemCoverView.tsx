@@ -37,7 +37,8 @@ export default SectionItemCoverView;
 const styles = StyleSheet.create({
   container: {
     width: SCREEN_WIDTH / 3,
-    marginEnd: 20,
+    marginStart: 15,
+    marginRight: 7,
   },
   row: {
     flexDirection: 'row',

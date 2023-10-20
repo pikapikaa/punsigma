@@ -52,7 +52,6 @@ export default MainScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
     gap: 30,
   },
   trackContainer: {
