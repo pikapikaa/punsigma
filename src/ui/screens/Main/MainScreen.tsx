@@ -1,14 +1,13 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 
 import SafeAreaWrap from '../../components/layouts/SafeAreaWrap';
 import MainTitleView from '../../components/main/MainTitleView';
 import SearchView from '../../components/main/SearchView';
-import {ScrollView} from 'react-native-gesture-handler';
 import FilterScrollView from '../../components/main/FilterScrollView';
 import SectionView from '../../components/main/SectionView';
 import {recentlyPodcasts} from '../../../services/fakeData';
-import {SCREEN_WIDTH} from '@gorhom/bottom-sheet';
 import SectionItemView from '../../components/main/SectionItemView';
 import SectionItemCoverView from '../../components/main/SectionItemCoverView';
 
@@ -54,18 +53,4 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 30,
   },
-  trackContainer: {
-    width: SCREEN_WIDTH - 30,
-  },
-  image: {
-    width: 70,
-    height: 70,
-    borderRadius: 20,
-    overflow: 'hidden',
-  },
-  text: {
-    fontSize: 15,
-    fontWeight: '500',
-  },
-  time: {color: 'grey', fontSize: 14},
 });
