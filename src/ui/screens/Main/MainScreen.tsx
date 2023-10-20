@@ -10,8 +10,10 @@ import SectionView from '../../components/main/SectionView';
 import {recentlyPodcasts} from '../../../services/fakeData';
 import SectionItemView from '../../components/main/SectionItemView';
 import SectionItemCoverView from '../../components/main/SectionItemCoverView';
+import {useNavigation} from '@react-navigation/native';
 
-const MainScreen = ({navigation}) => {
+const MainScreen = () => {
+  const navigation = useNavigation();
   function onPressPodcast() {
     navigation.navigate('PodcastInfoView');
   }
