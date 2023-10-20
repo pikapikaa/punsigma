@@ -13,7 +13,6 @@ import SectionItemCoverView from '../../components/main/SectionItemCoverView';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import PodcastDetailViewScreen from '../podcast/PodcastDetailViewScreen';
 import {usePlayMedia} from '../../../application/playMedia';
-import TrackPlayer from 'react-native-track-player';
 
 const MainScreen = () => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
