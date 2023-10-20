@@ -10,4 +10,5 @@ export interface MediaPlayerService {
   getProgress(): Progress;
   isPlaying(): boolean;
   getState(): State;
+  play(): void;
 }

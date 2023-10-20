@@ -2,7 +2,7 @@ import {Podcast} from '../domain/Podcast';
 
 export const podcasts: Podcast[] = [
   {
-    id: '1',
+    id: '123',
     url: `https://drive.google.com/u/0/uc?id=1dZvOLzqIyrXZmr6yNtl0-1gOo0aZ0XLu&export=download`,
     title: 'if u feeling "Lost"',
     description: 'Youtube channel "Burii University"',

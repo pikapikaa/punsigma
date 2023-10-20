@@ -26,6 +26,9 @@ export function useMediaPlayer(): MediaPlayerService {
     async pause() {
       await TrackPlayer.pause();
     },
+    async play() {
+      await TrackPlayer.play();
+    },
     async seekTo(time: number) {
       await TrackPlayer.seekTo(time);
     },
