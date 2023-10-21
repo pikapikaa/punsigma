@@ -1,13 +1,15 @@
 import * as React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ViewProps} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-interface PlayIconViewProps {}
+interface PlayIconViewProps extends ViewProps {
+  iconColor?: string;
+}
 
-const PlayIconView = (props: PlayIconViewProps) => {
+const PlayIconView = ({iconColor = 'black', ...props}: PlayIconViewProps) => {
   return (
-    <View style={styles.container}>
-      <Icon name="play" size={20} color="black" />
+    <View style={[styles.container, props.style]}>
+      <Icon name="play" size={15} color={iconColor} />
     </View>
   );
 };

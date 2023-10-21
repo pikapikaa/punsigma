@@ -1,4 +1,4 @@
-import {SCREEN_WIDTH, WINDOW_WIDTH} from '@gorhom/bottom-sheet';
+import {SCREEN_WIDTH, WINDOW_HEIGHT, WINDOW_WIDTH} from '@gorhom/bottom-sheet';
 import * as React from 'react';
 import {Text, View, StyleSheet, Pressable, Image} from 'react-native';
 
@@ -11,12 +11,27 @@ interface SectionItemViewProps {
   play?: () => void;
 }
 
+const WIDTH_IMAGE = WINDOW_WIDTH / 2 - 20;
+const HEIGHT_IMAGE = 250;
+
 const SectionItemCoverView = ({item, showInfo, play}: SectionItemViewProps) => {
   return (
     <View style={styles.container}>
       <Pressable style={{}} onPress={showInfo}>
         <View style={{gap: 10}}>
-          <Image source={{uri: item.url}} style={styles.image} />
+          <View>
+            <Image source={{uri: item.url}} style={styles.image} />
+            <PlayIconView
+              style={{
+                position: 'absolute',
+                top: HEIGHT_IMAGE / 2 - 20,
+                left: (WIDTH_IMAGE - 20) / 2,
+                backgroundColor: `rgba(255, 255, 255, 0.6)`,
+              }}
+              iconColor="white"
+            />
+          </View>
+
           <View
             style={{
               height: 60,
@@ -37,7 +52,7 @@ export default SectionItemCoverView;
 
 const styles = StyleSheet.create({
   container: {
-    width: WINDOW_WIDTH / 2 - 20,
+    width: WIDTH_IMAGE,
     marginStart: 15,
     marginRight: 7,
   },
@@ -47,8 +62,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   image: {
-    width: WINDOW_WIDTH / 2 - 20,
-    height: 250,
+    width: WIDTH_IMAGE,
+    height: HEIGHT_IMAGE,
     borderRadius: 20,
     overflow: 'hidden',
   },
