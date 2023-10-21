@@ -1,4 +1,4 @@
-import {SCREEN_WIDTH} from '@gorhom/bottom-sheet';
+import {SCREEN_WIDTH, WINDOW_WIDTH} from '@gorhom/bottom-sheet';
 import * as React from 'react';
 import {Text, View, StyleSheet, Pressable, Image} from 'react-native';
 
@@ -37,7 +37,7 @@ export default SectionItemCoverView;
 
 const styles = StyleSheet.create({
   container: {
-    width: 150,
+    width: WINDOW_WIDTH / 2 - 20,
     marginStart: 15,
     marginRight: 7,
   },
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   image: {
-    width: 150,
-    height: 200,
+    width: WINDOW_WIDTH / 2 - 20,
+    height: 250,
     borderRadius: 20,
     overflow: 'hidden',
   },
