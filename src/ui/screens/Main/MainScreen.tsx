@@ -37,7 +37,7 @@ const MainScreen = () => {
           <SearchView />
           <FilterScrollView />
           <SectionView
-            title="Trending Podcasts"
+            title="Recently Played"
             data={recentlyPodcasts}
             numColumns={Math.ceil(recentlyPodcasts.length / 2)}
             renderItem={({item}) => (
