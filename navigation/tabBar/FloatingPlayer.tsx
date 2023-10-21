@@ -11,17 +11,19 @@ const FloatingPlayer = (props: FloatingPlayerProps) => {
   const {isPlaying} = usePlayMedia();
   const isPlayingMedia = isPlaying();
 
-  if (!isPlayingMedia) return;
   return (
-    <View style={styles.container}>
-      <View style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
+    <View style={[styles.container, styles.row]}>
+      <View style={[styles.row, {gap: 20}]}>
         <Icon name="play" size={20} color="white" />
         <View>
-          <Text style={{color: 'white'}}>Adele</Text>
-          <Text style={{color: 'white'}}>Easy on me</Text>
+          <Text style={styles.text}>Adele</Text>
+          <Text style={styles.text}>Easy on me</Text>
         </View>
       </View>
-      <Icon name="heart" size={20} color="white" />
+      <View style={[styles.row, {gap: 20}]}>
+        <Icon name="heart-outline" size={20} color="white" />
+        <Icon name="close" size={23} color="white" />
+      </View>
     </View>
   );
 };
@@ -29,13 +31,15 @@ const FloatingPlayer = (props: FloatingPlayerProps) => {
 export default FloatingPlayer;
 
 const styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   container: {
     padding: 10,
     paddingHorizontal: 15,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.6)',
+    justifyContent: 'space-between',
   },
   image: {
     width: imageSize,
@@ -43,4 +47,5 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     overflow: 'hidden',
   },
+  text: {color: 'white'},
 });
