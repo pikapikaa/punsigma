@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import {SafeAreaView, ActivityIndicator, StatusBar} from 'react-native';
+import {SafeAreaView, ActivityIndicator, StyleSheet} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -24,7 +24,7 @@ const Inner: FC = () => {
 
   if (!isPlayerReady) {
     return (
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={styles.container}>
         <ActivityIndicator />
       </SafeAreaView>
     );
@@ -49,5 +49,9 @@ function useSetupPlayer() {
   }, []);
   return playerReady;
 }
+
+const styles = StyleSheet.create({
+  container: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+});
 
 export default App;
