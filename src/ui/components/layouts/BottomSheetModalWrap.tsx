@@ -4,20 +4,15 @@ import {BottomSheetModal, BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 interface BottomSheetModalWrapProps {
   modalRef: React.RefObject<BottomSheetModal>;
   children: ReactNode;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const BottomSheetModalWrap = ({
   modalRef,
   children,
-  setIsOpen,
 }: BottomSheetModalWrapProps) => {
   const snapPoints = useMemo(() => ['95%'], []);
 
-  const handleSheetChanges = useCallback(async (index: number) => {
-    if (index === 0) setIsOpen(true);
-    else setIsOpen(false);
-  }, []);
+  const handleSheetChanges = () => {};
 
   const renderBackdrop = useCallback(
     props => (

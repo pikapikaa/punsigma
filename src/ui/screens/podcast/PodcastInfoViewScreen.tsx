@@ -94,10 +94,7 @@ const PodcastInfoViewScreen = ({navigation}) => {
             <Text>{podcast.description}</Text>
           </View>
 
-          <PodcastDetailViewScreen
-            modalRef={bottomSheetModalRef}
-            setIsOpen={setIsOpen}
-          />
+          <PodcastDetailViewScreen modalRef={bottomSheetModalRef} />
         </ScrollView>
       </View>
     </>

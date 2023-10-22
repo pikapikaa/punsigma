@@ -58,7 +58,7 @@ function Navigation() {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={{headerShown: false}}
-        tabBar={CustomBottomTabBar}>
+        tabBar={props => <CustomBottomTabBar {...props} />}>
         <Tab.Screen name="home" component={MainStack} />
         <Tab.Screen name="other" component={OtherStack} />
       </Tab.Navigator>

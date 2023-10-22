@@ -10,13 +10,13 @@ import SectionView from '../../components/main/SectionView';
 import {podcasts, recentlyPodcasts} from '../../../services/fakeData';
 import SectionItemView from '../../components/main/SectionItemView';
 import SectionItemCoverView from '../../components/main/SectionItemCoverView';
-import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import PodcastDetailViewScreen from '../podcast/PodcastDetailViewScreen';
 import {usePlayMedia} from '../../../application/playMedia';
 import {useNavigation} from '@react-navigation/native';
+import {usePlayerContext} from '../../../services/contexts/PlayerContext';
 
 const MainScreen = () => {
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const {playerSheetModalRef, open} = usePlayerContext();
   const [isOpen, setIsOpen] = useState(false);
   const {playMedia} = usePlayMedia();
   const navigation = useNavigation();
@@ -26,7 +26,8 @@ const MainScreen = () => {
   }, []);
 
   const onPlay = useCallback(async () => {
-    await playMedia(bottomSheetModalRef, podcasts[0]);
+    open();
+    await playMedia(playerSheetModalRef, podcasts[0]);
   }, []);
 
   return (
@@ -63,10 +64,7 @@ const MainScreen = () => {
           />
         </View>
       </ScrollView>
-      <PodcastDetailViewScreen
-        modalRef={bottomSheetModalRef}
-        setIsOpen={setIsOpen}
-      />
+      <PodcastDetailViewScreen modalRef={playerSheetModalRef} />
     </SafeAreaWrap>
   );
 };

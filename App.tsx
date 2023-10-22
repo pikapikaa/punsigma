@@ -6,13 +6,16 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import Navigation from './navigation/stack';
 import {SetupService} from './src/services/SetupService';
+import {PlayerProvider} from './src/services/contexts/PlayerContext';
 
 function App(): JSX.Element {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <BottomSheetModalProvider>
         <SafeAreaProvider>
-          <Inner />
+          <PlayerProvider>
+            <Inner />
+          </PlayerProvider>
         </SafeAreaProvider>
       </BottomSheetModalProvider>
     </GestureHandlerRootView>

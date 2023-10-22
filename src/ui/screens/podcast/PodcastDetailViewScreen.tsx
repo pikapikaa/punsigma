@@ -18,7 +18,6 @@ import {removePunctuation} from '../../../lib/util';
 
 interface PodcastDetailViewScreenProps {
   modalRef: React.RefObject<BottomSheetModal>;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 type FlatListRenderItem = {
@@ -26,10 +25,7 @@ type FlatListRenderItem = {
   index: number;
 };
 
-const PodcastDetailViewScreen = ({
-  modalRef,
-  setIsOpen,
-}: PodcastDetailViewScreenProps) => {
+const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -101,7 +97,7 @@ const PodcastDetailViewScreen = ({
 
   return (
     <>
-      <BottomSheetModalWrap modalRef={modalRef} setIsOpen={setIsOpen}>
+      <BottomSheetModalWrap modalRef={modalRef}>
         <View style={styles.container}>
           <View style={{paddingHorizontal: 15, paddingTop: 25, flex: 1}}>
             <Text style={styles.title}>if u feeling “Lost”</Text>
