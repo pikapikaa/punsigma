@@ -1,11 +1,7 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import PodcastInfoViewScreen from '../src/ui/screens/podcast/PodcastInfoViewScreen';
 import MainScreen from '../src/ui/screens/Main/MainScreen';
+import PodcastInfoViewScreen from '../src/ui/screens/podcast/PodcastInfoViewScreen';
 import PlayerScreen from '../src/ui/screens/Main/PlayerScreen';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {CustomBottomTabBar} from './tabBar/CustomBottomTabBar';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,19 +47,20 @@ function OtherStack() {
   );
 }
 
-const Tab = createBottomTabNavigator();
-
-function Navigation() {
+function SettingsStack() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{headerShown: false}}
-        tabBar={props => <CustomBottomTabBar {...props} />}>
-        <Tab.Screen name="home" component={MainStack} />
-        <Tab.Screen name="other" component={OtherStack} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator
+      screenOptions={() => {
+        return {
+          headerShadowVisible: false,
+          headerStyle: {backgroundColor: 'white'},
+          headerTintColor: 'black',
+          headerShown: false,
+        };
+      }}>
+      <Stack.Screen name="Main" component={PlayerScreen} />
+    </Stack.Navigator>
   );
 }
 
-export default Navigation;
+export {MainStack, OtherStack, SettingsStack};

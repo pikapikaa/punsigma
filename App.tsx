@@ -4,7 +4,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-import Navigation from './navigation/stack';
+import Navigation from './navigation/navigation';
 import {SetupService} from './src/services/SetupService';
 import {PlayerProvider} from './src/services/contexts/PlayerContext';
 
