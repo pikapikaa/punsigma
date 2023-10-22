@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 20,
     overflow: 'hidden',
-    marginStart: 15,
+    marginStart: 10,
   },
+
   text: {color: '#7d7a6f', fontFamily: 'RobotoSlab-Thin'},
 });

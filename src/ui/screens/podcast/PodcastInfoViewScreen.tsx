@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   titleText: {
     color: 'black',
     fontSize: 20,
-    fontWeight: '900',
+    fontFamily: 'RobotoSlab-Bold',
     marginBottom: 20,
     textAlign: 'center',
   },
@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
     color: '#FDFEFD',
     fontSize: 20,
     fontWeight: '400',
+    fontFamily: 'RobotoSlab-Regular',
   },
   image: {
     width: 150,
