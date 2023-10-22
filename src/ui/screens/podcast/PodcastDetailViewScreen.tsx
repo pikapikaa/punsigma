@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   title: {
-    fontWeight: 'bold',
+    fontFamily: 'RobotoSlab-Bold',
     color: 'black',
     fontSize: 30,
     marginBottom: 15,

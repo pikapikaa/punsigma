@@ -39,7 +39,7 @@ const PodcastTextRightRowItem = ({
                   style={[
                     styles.text,
                     isHighlighted && {
-                      fontWeight: 'bold',
+                      fontFamily: 'RobotoSlab-Bold',
                       color: 'black',
                     },
                   ]}>
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'grey',
     lineHeight: 30,
+    fontFamily: 'RobotoSlab-Thin',
   },
   highligthView: {
     backgroundColor: '#F3F7FC',
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     overflow: 'hidden',
     borderRadius: 10,
-    fontWeight: 'bold',
+    fontFamily: 'RobotoSlab-Bold',
     color: '#304054',
   },
 });
