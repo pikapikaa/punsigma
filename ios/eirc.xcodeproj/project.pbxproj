@@ -8,24 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* eircTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* eircTests.m */; };
-		09C208DC5AEE43D69636263F /* HeliosCond-Bold-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D76D72F29B254ADE9E786706 /* HeliosCond-Bold-Italic.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-eirc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-eirc.a */; };
-		139FA83C3CAB44ACB7B47AA5 /* HeliosCond-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 6F3BC5C7CE204D2BA109FFDE /* HeliosCond-Bold.woff */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		4B8909AB6E6D43EF875476C5 /* HeliosCond-Bold-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = EEF8F450B3D94CFDA9C47FFD /* HeliosCond-Bold-Italic.eot */; };
-		6ADC5A72AF984BB6B92BE79C /* HeliosCond.woff in Resources */ = {isa = PBXBuildFile; fileRef = 9FE6BDA1904145E69FF4F3DD /* HeliosCond.woff */; };
-		715703156E2145AF853005A4 /* HeliosCond-Italic.eot in Resources */ = {isa = PBXBuildFile; fileRef = 15B951DB8F45424C925A24C5 /* HeliosCond-Italic.eot */; };
 		7699B88040F8A987B510C191 /* libPods-eirc-eircTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-eirc-eircTests.a */; };
-		7970F47553E84C5B9C53891E /* HeliosCond.eot in Resources */ = {isa = PBXBuildFile; fileRef = 0B099FCC7EB341D186F40A1E /* HeliosCond.eot */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		928378F2998E4F35908A884A /* HeliosCond-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = 94B6A39D132244A388A34A0F /* HeliosCond-Bold.eot */; };
-		98D579FE3C5141A185152F30 /* HeliosCond-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 900F1C2DF02C4225AA70AAAF /* HeliosCond-Italic.ttf */; };
-		AD320FE267AE4057856979DA /* HeliosCond-Bold-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 97553D190B534C348617F257 /* HeliosCond-Bold-Italic.woff */; };
-		D6484833731945A9A182FE86 /* HeliosCond.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F31D386CED3F484180087AAD /* HeliosCond.ttf */; };
-		D7E1A67503E147358D6E97E4 /* HeliosCond-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 57D30C855344455FA2F0EB09 /* HeliosCond-Italic.woff */; };
-		F8AFB999A0304DF28AC49DAB /* HeliosCond-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A8B287EEA3CC4D0D9A09D6B8 /* HeliosCond-Bold.ttf */; };
 		472DBD4E56454833A8051380 /* RobotoSlab-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87E160C3C0E94AF3B047406F /* RobotoSlab-Black.ttf */; };
 		A8DD9A42956D4379829F5226 /* RobotoSlab-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D200AD68501B429EB9CF4079 /* RobotoSlab-Bold.ttf */; };
 		E14934E1C01E470BA9D81332 /* RobotoSlab-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2794DCEFA3B14BDFA55CB7D7 /* RobotoSlab-ExtraBold.ttf */; };
@@ -51,35 +39,23 @@
 		00E356EE1AD99517003FC87E /* eircTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eircTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* eircTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eircTests.m; sourceTree = "<group>"; };
-		0B099FCC7EB341D186F40A1E /* HeliosCond.eot */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HeliosCond.eot; path = ../assets/fonts/HeliosCond.eot; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* eirc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eirc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = eirc/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = eirc/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = eirc/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = eirc/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = eirc/main.m; sourceTree = "<group>"; };
-		15B951DB8F45424C925A24C5 /* HeliosCond-Italic.eot */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HeliosCond-Italic.eot"; path = "../assets/fonts/HeliosCond-Italic.eot"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-eirc-eircTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eirc-eircTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-eirc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eirc.debug.xcconfig"; path = "Target Support Files/Pods-eirc/Pods-eirc.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-eirc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eirc.release.xcconfig"; path = "Target Support Files/Pods-eirc/Pods-eirc.release.xcconfig"; sourceTree = "<group>"; };
-		57D30C855344455FA2F0EB09 /* HeliosCond-Italic.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HeliosCond-Italic.woff"; path = "../assets/fonts/HeliosCond-Italic.woff"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-eirc-eircTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eirc-eircTests.debug.xcconfig"; path = "Target Support Files/Pods-eirc-eircTests/Pods-eirc-eircTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-eirc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eirc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F3BC5C7CE204D2BA109FFDE /* HeliosCond-Bold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HeliosCond-Bold.woff"; path = "../assets/fonts/HeliosCond-Bold.woff"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = eirc/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84821D1D2ACE5A4100C82D52 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		84821D232ACE5A4300C82D52 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		84821D252ACE5A4400C82D52 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-eirc-eircTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eirc-eircTests.release.xcconfig"; path = "Target Support Files/Pods-eirc-eircTests/Pods-eirc-eircTests.release.xcconfig"; sourceTree = "<group>"; };
-		900F1C2DF02C4225AA70AAAF /* HeliosCond-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HeliosCond-Italic.ttf"; path = "../assets/fonts/HeliosCond-Italic.ttf"; sourceTree = "<group>"; };
-		94B6A39D132244A388A34A0F /* HeliosCond-Bold.eot */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HeliosCond-Bold.eot"; path = "../assets/fonts/HeliosCond-Bold.eot"; sourceTree = "<group>"; };
-		97553D190B534C348617F257 /* HeliosCond-Bold-Italic.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HeliosCond-Bold-Italic.woff"; path = "../assets/fonts/HeliosCond-Bold-Italic.woff"; sourceTree = "<group>"; };
-		9FE6BDA1904145E69FF4F3DD /* HeliosCond.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HeliosCond.woff; path = ../assets/fonts/HeliosCond.woff; sourceTree = "<group>"; };
-		A8B287EEA3CC4D0D9A09D6B8 /* HeliosCond-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HeliosCond-Bold.ttf"; path = "../assets/fonts/HeliosCond-Bold.ttf"; sourceTree = "<group>"; };
-		D76D72F29B254ADE9E786706 /* HeliosCond-Bold-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HeliosCond-Bold-Italic.ttf"; path = "../assets/fonts/HeliosCond-Bold-Italic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EEF8F450B3D94CFDA9C47FFD /* HeliosCond-Bold-Italic.eot */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HeliosCond-Bold-Italic.eot"; path = "../assets/fonts/HeliosCond-Bold-Italic.eot"; sourceTree = "<group>"; };
-		F31D386CED3F484180087AAD /* HeliosCond.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HeliosCond.ttf; path = ../assets/fonts/HeliosCond.ttf; sourceTree = "<group>"; };
 		87E160C3C0E94AF3B047406F /* RobotoSlab-Black.ttf */ = {isa = PBXFileReference; name = "RobotoSlab-Black.ttf"; path = "../assets/fonts/RobotoSlab-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		D200AD68501B429EB9CF4079 /* RobotoSlab-Bold.ttf */ = {isa = PBXFileReference; name = "RobotoSlab-Bold.ttf"; path = "../assets/fonts/RobotoSlab-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		2794DCEFA3B14BDFA55CB7D7 /* RobotoSlab-ExtraBold.ttf */ = {isa = PBXFileReference; name = "RobotoSlab-ExtraBold.ttf"; path = "../assets/fonts/RobotoSlab-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
@@ -197,18 +173,6 @@
 		92B55626E7A44A09B22EA11F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D76D72F29B254ADE9E786706 /* HeliosCond-Bold-Italic.ttf */,
-				A8B287EEA3CC4D0D9A09D6B8 /* HeliosCond-Bold.ttf */,
-				900F1C2DF02C4225AA70AAAF /* HeliosCond-Italic.ttf */,
-				F31D386CED3F484180087AAD /* HeliosCond.ttf */,
-				EEF8F450B3D94CFDA9C47FFD /* HeliosCond-Bold-Italic.eot */,
-				97553D190B534C348617F257 /* HeliosCond-Bold-Italic.woff */,
-				94B6A39D132244A388A34A0F /* HeliosCond-Bold.eot */,
-				6F3BC5C7CE204D2BA109FFDE /* HeliosCond-Bold.woff */,
-				15B951DB8F45424C925A24C5 /* HeliosCond-Italic.eot */,
-				57D30C855344455FA2F0EB09 /* HeliosCond-Italic.woff */,
-				0B099FCC7EB341D186F40A1E /* HeliosCond.eot */,
-				9FE6BDA1904145E69FF4F3DD /* HeliosCond.woff */,
 				87E160C3C0E94AF3B047406F /* RobotoSlab-Black.ttf */,
 				D200AD68501B429EB9CF4079 /* RobotoSlab-Bold.ttf */,
 				2794DCEFA3B14BDFA55CB7D7 /* RobotoSlab-ExtraBold.ttf */,
@@ -329,18 +293,6 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				09C208DC5AEE43D69636263F /* HeliosCond-Bold-Italic.ttf in Resources */,
-				F8AFB999A0304DF28AC49DAB /* HeliosCond-Bold.ttf in Resources */,
-				98D579FE3C5141A185152F30 /* HeliosCond-Italic.ttf in Resources */,
-				D6484833731945A9A182FE86 /* HeliosCond.ttf in Resources */,
-				4B8909AB6E6D43EF875476C5 /* HeliosCond-Bold-Italic.eot in Resources */,
-				AD320FE267AE4057856979DA /* HeliosCond-Bold-Italic.woff in Resources */,
-				928378F2998E4F35908A884A /* HeliosCond-Bold.eot in Resources */,
-				139FA83C3CAB44ACB7B47AA5 /* HeliosCond-Bold.woff in Resources */,
-				715703156E2145AF853005A4 /* HeliosCond-Italic.eot in Resources */,
-				D7E1A67503E147358D6E97E4 /* HeliosCond-Italic.woff in Resources */,
-				7970F47553E84C5B9C53891E /* HeliosCond.eot in Resources */,
-				6ADC5A72AF984BB6B92BE79C /* HeliosCond.woff in Resources */,
 				472DBD4E56454833A8051380 /* RobotoSlab-Black.ttf in Resources */,
 				A8DD9A42956D4379829F5226 /* RobotoSlab-Bold.ttf in Resources */,
 				E14934E1C01E470BA9D81332 /* RobotoSlab-ExtraBold.ttf in Resources */,

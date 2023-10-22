@@ -53,10 +53,6 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>HeliosCond-Bold-Italic.ttf</string>
-		<string>HeliosCond-Bold.ttf</string>
-		<string>HeliosCond-Italic.ttf</string>
-		<string>HeliosCond.ttf</string>
 		<string>Ionicons.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>FontAwesome.ttf</string>
