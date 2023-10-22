@@ -6,7 +6,6 @@ import {
   Image,
   ScrollView,
   Pressable,
-  StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconEntypo from 'react-native-vector-icons/Entypo';
@@ -17,12 +16,11 @@ import {usePlayMedia} from '../../../application/playMedia';
 import {podcasts} from '../../../services/fakeData';
 import {formateDate, parseStrToDate2} from '../../../lib/datetime';
 import {useModalBackHandler} from '../../../services/hooks/useModalBackHandler';
-import SafeAreaWrap from '../../components/layouts/SafeAreaWrap';
 
 const PodcastInfoViewScreen = ({navigation}) => {
   const [isOpen, setIsOpen] = useState(false);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const {addMedia, playAndPauseMedia, resetMedia} = usePlayMedia();
+  const {playMedia} = usePlayMedia();
   const podcast = podcasts[0];
 
   useModalBackHandler(
@@ -32,16 +30,12 @@ const PodcastInfoViewScreen = ({navigation}) => {
   );
 
   const handlePresentModalPress = useCallback(async () => {
-    bottomSheetModalRef.current?.present();
-    await resetMedia();
-    await addMedia(podcasts[0]);
-    await playAndPauseMedia();
+    await playMedia(bottomSheetModalRef, podcasts[0]);
   }, []);
 
   return (
     <>
       <View style={{flex: 1}}>
-        {/* <StatusBar barStyle={'dark-content'} backgroundColor="#F3F7FC" /> */}
         <ScrollView style={styles.scrollView}>
           <View style={styles.top}>
             <View style={{alignItems: 'center', gap: 15}}>
