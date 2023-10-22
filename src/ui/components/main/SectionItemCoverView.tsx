@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    fontWeight: '500',
+    fontFamily: 'RobotoSlab-Regular',
+    color: 'black',
   },
   time: {color: 'grey', fontSize: 14},
 });

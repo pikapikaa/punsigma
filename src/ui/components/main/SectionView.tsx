@@ -49,7 +49,8 @@ export default SectionView;
 const styles = StyleSheet.create({
   container: {gap: 20},
   title: {
-    fontWeight: 'bold',
+    fontFamily: 'RobotoSlab-Bold',
+    color: 'black',
     fontSize: 19,
     marginStart: 15,
   },

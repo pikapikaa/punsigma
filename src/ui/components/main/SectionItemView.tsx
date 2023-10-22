@@ -57,8 +57,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   text: {
-    fontSize: 15,
-    fontWeight: '500',
+    fontSize: 14,
+    fontFamily: 'RobotoSlab-Regular',
+    color: 'black',
   },
   time: {color: 'grey', fontSize: 14},
 });

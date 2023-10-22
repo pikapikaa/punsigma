@@ -21,5 +21,5 @@ const styles = StyleSheet.create({
     gap: 8,
     alignItems: 'center',
   },
-  time: {color: 'grey', fontSize: 14},
+  time: {color: 'grey', fontSize: 14, fontFamily: 'RobotoSlab-Thin'},
 });

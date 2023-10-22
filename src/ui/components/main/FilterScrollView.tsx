@@ -33,9 +33,8 @@ const styles = StyleSheet.create({
   container: {
     padding: 15,
     borderRadius: 20,
-    marginEnd: 10,
     overflow: 'hidden',
     marginStart: 15,
   },
-  text: {color: '#7d7a6f'},
+  text: {color: '#7d7a6f', fontFamily: 'RobotoSlab-Thin'},
 });

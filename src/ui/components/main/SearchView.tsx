@@ -26,12 +26,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f3f2e9',
     padding: 15,
-    paddingVertical: 17,
+    paddingVertical: 15,
     borderRadius: 7,
     marginHorizontal: 15,
   },
   placeholderText: {
     color: '#98958b',
     fontSize: 16,
+    fontFamily: 'RobotoSlab-Thin',
   },
 });

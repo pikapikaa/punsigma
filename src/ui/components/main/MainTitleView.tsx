@@ -11,7 +11,7 @@ const MainTitleView = (props: MainTitleViewProps) => {
     <View style={styles.titleContainer}>
       <View style={{gap: 3}}>
         <Text style={styles.titleText}>Hey, Batozhab! &#128075;</Text>
-        <Text style={{color: 'grey'}}>Listen to your favorite podcasts</Text>
+        <Text style={styles.text}>Listen to your favorite podcasts</Text>
       </View>
       <Image source={{uri: imageUrl}} style={styles.image} />
     </View>
@@ -28,10 +28,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
   },
   titleText: {
-    fontSize: 22,
-    fontWeight: 'bold',
+    fontSize: 25,
+    fontFamily: 'RobotoSlab-Bold',
     color: 'black',
   },
+  text: {color: 'grey', fontFamily: 'RobotoSlab-Thin'},
   image: {
     width: imageSize,
     height: imageSize,

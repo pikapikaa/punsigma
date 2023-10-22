@@ -14,15 +14,14 @@ function Navigation() {
       <Tab.Navigator
         screenOptions={({route}) => ({
           headerShown: false,
+          tabBarLabelStyle: {fontFamily: 'RobotoSlab-Medium'},
           tabBarIcon: ({focused, color, size}) => {
             let iconName;
 
             if (route.name === 'home') {
               iconName = focused ? 'home' : 'home-outline';
             } else if (route.name === 'other') {
-              iconName = focused
-                ? 'information-circle'
-                : 'information-circle-outline';
+              iconName = focused ? 'fitness' : 'fitness-outline';
             } else if (route.name === 'settings') {
               iconName = focused ? 'settings' : 'settings-outline';
             }
