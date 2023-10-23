@@ -39,6 +39,8 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
 
   const {position} = getProgress();
 
+  const podcastDuration = 126;
+
   const syncLyric = (time: number) => {
     const scores: number[] = [];
     track.forEach(({progress}) => {
@@ -50,6 +52,13 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
 
     const closest = Math.min(...scores);
     return scores.indexOf(closest);
+  };
+
+  const onPlay = () => {
+    if (position >= podcastDuration) {
+      seekToMedia(0);
+    }
+    playAndPauseMedia();
   };
 
   useEffect(() => {
@@ -111,7 +120,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
             />
           </View>
 
-          <MediaPlayer onPress={playAndPauseMedia} seekTo={seekToMedia} />
+          <MediaPlayer onPress={onPlay} seekTo={seekToMedia} />
         </View>
       </BottomSheetModalWrap>
 
