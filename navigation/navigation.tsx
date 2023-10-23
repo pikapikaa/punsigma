@@ -21,7 +21,7 @@ function Navigation() {
             if (route.name === 'home') {
               iconName = focused ? 'home' : 'home-outline';
             } else if (route.name === 'other') {
-              iconName = focused ? 'fitness' : 'fitness-outline';
+              iconName = focused ? 'barbell' : 'barbell-outline';
             } else if (route.name === 'settings') {
               iconName = focused ? 'settings' : 'settings-outline';
             }
