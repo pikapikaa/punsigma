@@ -1,5 +1,6 @@
 import {Podcast} from '../domain/Podcast';
 import {Subtitle} from '../domain/SubtitleData';
+import {Topic} from '../domain/Topic';
 
 const subtitleDummyData: Array<Subtitle> = [
   {
@@ -188,6 +189,52 @@ export const podcasts: Podcast[] = [
       'https://compote.slate.com/images/ea417857-5b23-47b9-9380-c1b70b33694f.jpg?crop=1180%2C842%2Cx0%2Cy0&width=1920',
     subtitleData: subtitleDummyData,
     duration: 126,
+  },
+];
+
+export const allTopics: Topic[] = [
+  {
+    id: `1`,
+    url: '',
+    description:
+      'https://teletype.in/files/d9/6a/d96aa6ca-5cc0-49bd-b66b-4f58f9f9a564.jpeg',
+    title: 'Жилой дом. Квартира.',
+    date: '12.12.12',
+  },
+  {
+    id: `2`,
+    url: 'https://begeton.com/files/users-companies/122/3/08/nYB5El3FbbEo7CB67cW3M8qWSjltQEuI.jpg.jpeg',
+    description: '',
+    title: 'Продукты питания',
+    date: 'string',
+  },
+  {
+    id: `3`,
+    url: 'https://cdn.kanobu.ru/editor/images/14/ad828eca-6516-4c8d-bffc-7ea8e19caffa.webp',
+    description: '',
+    title: 'Эмоции',
+    date: 'string',
+  },
+  {
+    id: `4`,
+    url: 'https://primamediamts.servicecdn.ru/f/big/911/910099.jpg',
+    description: '',
+    title: 'В банке',
+    date: 'string',
+  },
+  {
+    id: `5`,
+    url: 'https://assets3.cbsnewsstatic.com/hub/i/r/2017/04/06/0f3e9754-3fd8-481a-bf80-97c1c38c0cf1/thumbnail/1200x630/c8bc2b7238dd83306cefecd875f56a3a/bodegas-20161144.jpg?v=a6a127b4a243923dd1e2140b75f2a43c',
+    description: '',
+    title: 'В магазине',
+    date: 'string',
+  },
+  {
+    id: `6`,
+    url: 'https://static.life.ru/publications/2020/5/25/1143568001582.5872.jpg',
+    description: '',
+    title: 'В аэропрту',
+    date: 'string',
   },
 ];
 
