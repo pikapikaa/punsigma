@@ -6,26 +6,27 @@ import {
   BottomSheetFlatListMethods,
 } from '@gorhom/bottom-sheet';
 
-import {track} from '../../../../dummyData';
+import {podcasts} from '../../../services/fakeData';
 import MediaPlayer from '../../components/ui/other/MediaPlayer';
-import {TrackInterface} from '../../../../dummyData';
 import BottomSheetModalWrap from '../../components/layouts/BottomSheetModalWrap';
 import PodcastTranslateViewScreen from './PodcastTranslateViewScreen';
 import {usePlayMedia} from '../../../application/playMedia';
 import {translateWord} from '../../../services/api';
 import PodcastTextRowItem from '../../components/podcast/PodcastTextRowItem';
 import {removePunctuation} from '../../../lib/util';
+import {Subtitle} from '../../../domain/SubtitleData';
 
 interface PodcastDetailViewScreenProps {
   modalRef: React.RefObject<BottomSheetModal>;
 }
 
 type FlatListRenderItem = {
-  item: TrackInterface;
+  item: Subtitle;
   index: number;
 };
 
 const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
+  const track = podcasts[0].subtitleData;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -41,10 +42,10 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
 
   const podcastDuration = 126;
 
-  const syncLyric = (time: number) => {
+  const syncLyric = (currentPos: number) => {
     const scores: number[] = [];
-    track.forEach(({progress}) => {
-      const score = time - progress;
+    track.forEach(({time}) => {
+      const score = currentPos - time;
       if (score >= 0) scores.push(score);
     });
 

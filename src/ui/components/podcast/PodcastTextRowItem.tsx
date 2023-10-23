@@ -4,9 +4,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import {TrackInterface} from '../../../../dummyData';
 import PodcastTextRightRowItem from './PodcastTextRightRowItem';
+import { Subtitle } from '../../../domain/SubtitleData';
 
 export interface PodcastTextRowItemProps {
-  item: TrackInterface;
+  item: Subtitle;
   index: number;
   currentIndex: number;
   onPressWord: (s: string) => void;
@@ -21,14 +22,14 @@ const PodcastTextRowItem = memo(
     onPressWord,
     onPressSentence,
   }: PodcastTextRowItemProps) => {
-    const {text, progress} = item;
+    const {text, time} = item;
     const isHighlighted = index === currentIndex;
 
     return (
       <View style={styles.container}>
         <PodcastTextRightRowItem
           text={text}
-          progress={progress}
+          progress={time}
           isHighlighted={isHighlighted}
           onPressWord={onPressWord}
           onPressSentence={onPressSentence}
