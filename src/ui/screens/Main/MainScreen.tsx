@@ -35,7 +35,7 @@ const MainScreen = () => {
       <ScrollView style={{flex: 1}}>
         <View style={styles.container}>
           <MainTitleView />
-          <SearchView />
+          <SearchView placeholder="Search any podcast topic" />
           <FilterScrollView />
           <SectionView
             title="Recently Played"
