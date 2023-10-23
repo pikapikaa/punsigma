@@ -2,6 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MainScreen from '../src/ui/screens/Main/MainScreen';
 import PodcastInfoViewScreen from '../src/ui/screens/podcast/PodcastInfoViewScreen';
 import PlayerScreen from '../src/ui/screens/Main/PlayerScreen';
+import Words from '../src/ui/screens/training/Words';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,7 +32,7 @@ function MainStack() {
   );
 }
 
-function OtherStack() {
+function TrainingsStack() {
   return (
     <Stack.Navigator
       screenOptions={() => {
@@ -42,7 +43,7 @@ function OtherStack() {
           headerShown: false,
         };
       }}>
-      <Stack.Screen name="Main" component={PlayerScreen} />
+      <Stack.Screen name="Main" component={Words} />
     </Stack.Navigator>
   );
 }
@@ -63,4 +64,4 @@ function SettingsStack() {
   );
 }
 
-export {MainStack, OtherStack, SettingsStack};
+export {MainStack, TrainingsStack, SettingsStack};

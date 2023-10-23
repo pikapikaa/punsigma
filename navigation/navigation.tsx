@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {CustomBottomTabBar} from './tabBar/CustomBottomTabBar';
-import {MainStack, OtherStack} from './stack';
+import {MainStack, SettingsStack, TrainingsStack} from './stack';
 
 const Tab = createBottomTabNavigator();
 
@@ -36,12 +36,12 @@ function Navigation() {
         />
         <Tab.Screen
           name="other"
-          component={OtherStack}
+          component={TrainingsStack}
           options={{title: 'Тренировки'}}
         />
         <Tab.Screen
           name="settings"
-          component={OtherStack}
+          component={SettingsStack}
           options={{title: 'Настройка'}}
         />
       </Tab.Navigator>
