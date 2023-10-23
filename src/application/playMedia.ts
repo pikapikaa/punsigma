@@ -2,9 +2,12 @@ import {useMediaPlayer} from '../services/mediaPlayerAdapter';
 import {Podcast} from '../domain/Podcast';
 import {BottomSheetModalMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
 import TrackPlayer from 'react-native-track-player';
+import {useContext} from 'react';
+import {PlayerContext} from '../services/contexts/PlayerContext';
 
 export function usePlayMedia() {
   const mediaPlayer = useMediaPlayer();
+  const {setPodcast} = useContext(PlayerContext);
 
   async function playInit(
     bottomSheetModalRef: React.RefObject<BottomSheetModalMethods>,
@@ -14,6 +17,7 @@ export function usePlayMedia() {
     await resetMedia();
     await addMedia(podcast);
     await playAndPauseMedia();
+    if (podcast) setPodcast(podcast);
   }
 
   async function playAndPauseMedia() {

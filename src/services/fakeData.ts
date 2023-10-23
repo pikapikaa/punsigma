@@ -179,6 +179,7 @@ export const podcasts: Podcast[] = [
   {
     id: '123',
     url: `https://drive.google.com/u/0/uc?id=1dZvOLzqIyrXZmr6yNtl0-1gOo0aZ0XLu&export=download`,
+    artist: 'Burii University',
     title: 'if u feeling "Lost"',
     description: 'Youtube channel "Burii University"',
     album: 'Burii University',

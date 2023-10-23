@@ -3,13 +3,11 @@ import {Text, View, StyleSheet, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {usePlayMedia} from '../../src/application/playMedia';
 import {PlayerContext} from '../../src/services/contexts/PlayerContext';
-import {State} from 'react-native-track-player';
 
 const FloatingPlayer = () => {
-  const {getState, pauseMedia} = usePlayMedia();
-  const state = getState();
+  const {pauseMedia, playAndPauseMedia, isPlaying} = usePlayMedia();
 
-  const {isFloatingOpen, close, playerSheetModalRef} =
+  const {isFloatingOpen, close, playerSheetModalRef, podcast} =
     useContext(PlayerContext);
 
   const closeBottomPlayer = () => {
@@ -21,25 +19,31 @@ const FloatingPlayer = () => {
     playerSheetModalRef?.current?.present();
   };
 
-  if ((state === State.Paused || state === State.Playing) && isFloatingOpen)
+  if (isFloatingOpen)
     return (
-      <Pressable onPress={pressBottomPlayer}>
-        <View style={[styles.container, styles.row]}>
-          <View style={[styles.row, {gap: 20}]}>
-            <Icon name="play" size={20} color="white" />
+      <View style={[styles.container, styles.row]}>
+        <View style={[styles.row, {gap: 20, flex: 1}]}>
+          <Pressable onPress={playAndPauseMedia}>
+            <Icon
+              name={isPlaying() ? 'pause' : 'play'}
+              size={20}
+              color="white"
+            />
+          </Pressable>
+          <Pressable onPress={pressBottomPlayer}>
             <View>
-              <Text style={styles.text}>Adele</Text>
-              <Text style={styles.text}>Easy on me</Text>
+              <Text style={styles.text}>{podcast?.artist}</Text>
+              <Text style={styles.text}>{podcast?.title}</Text>
             </View>
-          </View>
-          <View style={[styles.row, {gap: 20}]}>
-            <Icon name="heart-outline" size={20} color="white" />
-            <Pressable onPress={closeBottomPlayer}>
-              <Icon name="close" size={23} color="white" />
-            </Pressable>
-          </View>
+          </Pressable>
         </View>
-      </Pressable>
+        <View style={[styles.row, {gap: 20}]}>
+          <Icon name="heart-outline" size={20} color="white" />
+          <Pressable onPress={closeBottomPlayer}>
+            <Icon name="close" size={23} color="white" />
+          </Pressable>
+        </View>
+      </View>
     );
   else return null;
 };

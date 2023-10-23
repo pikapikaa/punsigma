@@ -69,7 +69,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
   };
 
   const onPlay = () => {
-    if (position >= currentPodcast?.duration) {
+    if (currentPodcast?.duration && position >= currentPodcast?.duration) {
       seekToMedia(0);
     }
     playAndPauseMedia();
