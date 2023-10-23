@@ -30,7 +30,7 @@ const FloatingPlayer = () => {
               color="white"
             />
           </Pressable>
-          <Pressable onPress={pressBottomPlayer}>
+          <Pressable onPress={pressBottomPlayer} style={{flex: 1}}>
             <View>
               <Text style={styles.text}>{podcast?.artist}</Text>
               <Text style={styles.text}>{podcast?.title}</Text>
