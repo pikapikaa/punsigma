@@ -11,8 +11,7 @@ const SearchView = (props: SearchViewProps) => {
         <Icon name="search-outline" size={30} color="#373d41" />
         <Text style={styles.placeholderText}>Search any podcast topic</Text>
       </View>
-
-      <Icon name="mic-outline" size={30} color="#373d41" />
+      <Icon name="filter" size={25} color="#373d41" />
     </View>
   );
 };
