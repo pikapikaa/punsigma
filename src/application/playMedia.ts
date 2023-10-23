@@ -34,6 +34,12 @@ export function usePlayMedia() {
     }
   }
 
+  async function getPodcastData() {
+    const tracksInQueue = await TrackPlayer.getQueue();
+    if (tracksInQueue.length) return tracksInQueue[0] as Podcast;
+    return null;
+  }
+
   async function pauseMedia() {
     mediaPlayer.pause();
   }
@@ -72,5 +78,6 @@ export function usePlayMedia() {
     isPlaying,
     getState,
     playMedia,
+    getPodcastData,
   };
 }

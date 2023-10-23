@@ -186,6 +186,7 @@ export const podcasts: Podcast[] = [
     artwork:
       'https://compote.slate.com/images/ea417857-5b23-47b9-9380-c1b70b33694f.jpg?crop=1180%2C842%2Cx0%2Cy0&width=1920',
     subtitleData: subtitleDummyData,
+    duration: 126,
   },
 ];
 

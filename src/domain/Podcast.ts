@@ -8,7 +8,7 @@ export type Podcast = {
   type?: string;
   userAgent?: string;
   contentType?: string;
-  duration?: number;
+  duration: number;
   title: string;
   artist?: string;
   album?: string;
