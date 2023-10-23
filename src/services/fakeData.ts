@@ -195,9 +195,8 @@ export const podcasts: Podcast[] = [
 export const allTopics: Topic[] = [
   {
     id: `1`,
-    url: '',
-    description:
-      'https://teletype.in/files/d9/6a/d96aa6ca-5cc0-49bd-b66b-4f58f9f9a564.jpeg',
+    url: 'https://teletype.in/files/d9/6a/d96aa6ca-5cc0-49bd-b66b-4f58f9f9a564.jpeg',
+    description: '',
     title: 'Жилой дом. Квартира.',
     date: '12.12.12',
   },

@@ -1,14 +1,32 @@
-import * as React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import React, {useCallback} from 'react';
+import {View, StyleSheet, ListRenderItem, SafeAreaView} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
+import {allTopics} from '../../../services/fakeData';
+import {Topic} from '../../../domain/Topic';
+import TopicCard from '../../components/trainings/Topic/TopicCard';
 
-interface WordsProps {}
+const Words = () => {
+  const onPress = () => {};
 
-const Words = (props: WordsProps) => {
+  const renderItem: ListRenderItem<Topic> = useCallback(({item}) => {
+    return (
+      <TopicCard
+        topic={item}
+        image={<TopicCard.Image />}
+        info={<TopicCard.Info />}
+        action={<TopicCard.Button onClick={onPress} />}
+      />
+    );
+  }, []);
+
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <Text>Words</Text>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fdfbf7'}}>
+      <View style={styles.container}>
+        <FlatList
+          data={allTopics}
+          renderItem={renderItem}
+          ItemSeparatorComponent={() => <View style={{height: 10}}></View>}
+        />
       </View>
     </SafeAreaView>
   );
@@ -19,6 +37,7 @@ export default Words;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15
+    padding: 15,
+    paddingBottom: 0,
   },
 });
