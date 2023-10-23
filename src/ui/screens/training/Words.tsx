@@ -30,7 +30,7 @@ const Words = () => {
         <FlatList
           data={allTopics}
           renderItem={renderItem}
-          ItemSeparatorComponent={() => <View style={{height: 10}}></View>}
+          ItemSeparatorComponent={() => <View style={{height: 20}}></View>}
         />
       </View>
     </SafeAreaView>

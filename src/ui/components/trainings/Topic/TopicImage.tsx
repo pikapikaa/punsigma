@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
 import {useTopicContext} from '../../../../services/contexts/TopicCardContext';
+import {SCREEN_HEIGHT} from '@gorhom/bottom-sheet';
 
 const TopicImage = () => {
   const {topic} = useTopicContext();
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 100,
+    height: SCREEN_HEIGHT / 10,
     borderRadius: 10,
     overflow: 'hidden',
   },

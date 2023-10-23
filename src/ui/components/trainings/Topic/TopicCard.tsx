@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
     height: SCREEN_HEIGHT / 4,
-    padding: 15,
+    padding: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
