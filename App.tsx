@@ -7,14 +7,15 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Navigation from './navigation/navigation';
 import {SetupService} from './src/services/SetupService';
 import {PlayerProvider} from './src/services/contexts/PlayerContext';
-import PanExample from './src/lib/reanimated_examples/PanExample';
 
 function App(): JSX.Element {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <BottomSheetModalProvider>
         <SafeAreaProvider>
-          <PanExample />
+          <PlayerProvider>
+            <Inner />
+          </PlayerProvider>
         </SafeAreaProvider>
       </BottomSheetModalProvider>
     </GestureHandlerRootView>

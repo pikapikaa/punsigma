@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, Pressable} from 'react-native';
 import {useTopicContext} from '../../../../services/contexts/TopicCardContext';
 import {Topic} from '../../../../domain/Topic';
 
@@ -16,7 +16,7 @@ const TopicButton = ({onClick}: TopicButtonProps) => {
 
   return (
     <View style={styles.container}>
-      <View
+      <Pressable
         style={{
           height: 35,
           backgroundColor: '#7a88fb',
@@ -24,16 +24,20 @@ const TopicButton = ({onClick}: TopicButtonProps) => {
           borderRadius: 5,
           alignItems: 'center',
           justifyContent: 'center',
-        }}>
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 15,
-            fontFamily: 'RobotoSlab-Bold',
-          }}>
-          Learn
-        </Text>
-      </View>
+        }}
+        onPress={handleClick}>
+        <View>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 15,
+              fontFamily: 'RobotoSlab-Bold',
+            }}>
+            Learn
+          </Text>
+        </View>
+      </Pressable>
+
       <View
         style={{
           height: 35,

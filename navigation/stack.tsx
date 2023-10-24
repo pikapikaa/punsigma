@@ -3,6 +3,7 @@ import MainScreen from '../src/ui/screens/Main/MainScreen';
 import PodcastInfoViewScreen from '../src/ui/screens/podcast/PodcastInfoViewScreen';
 import PlayerScreen from '../src/ui/screens/Main/PlayerScreen';
 import Words from '../src/ui/screens/training/Words';
+import TrainingScreen from '../src/lib/reanimated_examples/TrainingScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,7 +44,12 @@ function TrainingsStack() {
           headerShown: false,
         };
       }}>
-      <Stack.Screen name="Main" component={Words} />
+      <Stack.Screen name="Words" component={Words} />
+      <Stack.Screen
+        name="Training"
+        component={TrainingScreen}
+        options={{headerShown: true}}
+      />
     </Stack.Navigator>
   );
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
 import Card from './Card';
 
 interface TrainingScreenProps {}
@@ -34,15 +34,17 @@ const TrainingScreen = (props: TrainingScreenProps) => {
     {
       id: 3,
       name: 'Сайхан',
-      url: 'https://kinoscan.com/wp-content/uploads/2022/09/image2-114413-1503708740.jpeg',
+      url: 'https://cdn.kanobu.ru/editor/images/98/a2903b33-88ee-449d-9cb1-665dc42e1e54.webp',
     },
   ];
   return (
-    <View style={styles.container}>
-      {cards.map((card, index) => (
-        <Card key={card.id} card={card} index={index} />
-      ))}
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <View style={styles.container}>
+        {cards.map((card, index) => (
+          <Card key={card.id} card={card} index={index} />
+        ))}
+      </View>
+    </SafeAreaView>
   );
 };
 

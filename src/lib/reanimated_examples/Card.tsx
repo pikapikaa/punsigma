@@ -18,7 +18,7 @@ interface PanExample2Props {
 }
 
 const {width, height} = Dimensions.get('window');
-const aspectRatio = 722 / 368;
+const aspectRatio = 722 / 500;
 const CARD_WIDTH = width - 80;
 const CARD_HEIGHT = CARD_WIDTH * aspectRatio;
 const IMAGE_WIDTH = CARD_WIDTH * 0.9;
@@ -35,7 +35,7 @@ const PanExample2 = ({card, index}: PanExample2Props) => {
   const scale = useSharedValue(1);
 
   useEffect(() => {
-    const delay = 2000 + index * DURATION;
+    const delay = 1000 + index * DURATION;
     y.value = withDelay(
       delay,
       withTiming(0, {

@@ -5,9 +5,13 @@ import {allTopics} from '../../../services/fakeData';
 import {Topic} from '../../../domain/Topic';
 import TopicCard from '../../components/trainings/Topic/TopicCard';
 import SearchView from '../../components/main/SearchView';
+import {useNavigation} from '@react-navigation/native';
 
 const Words = () => {
-  const onPress = () => {};
+  const navigation = useNavigation();
+  const onPress = () => {
+    navigation.navigate('Training');
+  };
 
   const renderItem: ListRenderItem<Topic> = useCallback(({item}) => {
     return (
