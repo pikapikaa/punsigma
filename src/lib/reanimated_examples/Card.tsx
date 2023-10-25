@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:"white"
   },
   card: {
     width: CARD_WIDTH,
