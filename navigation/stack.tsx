@@ -42,13 +42,18 @@ function TrainingsStack() {
           headerStyle: {backgroundColor: 'white'},
           headerTintColor: 'black',
           headerShown: false,
+          headerTitleStyle: {fontFamily: 'RobotoSlab-Bold'},
         };
       }}>
       <Stack.Screen name="Words" component={Words} />
       <Stack.Screen
         name="Training"
         component={TrainingScreen}
-        options={{headerShown: true}}
+        options={{
+          headerShown: true,
+          headerBackTitleVisible: false,
+          title: 'Тренировка',
+        }}
       />
     </Stack.Navigator>
   );
