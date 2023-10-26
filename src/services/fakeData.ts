@@ -1,6 +1,7 @@
 import {Podcast} from '../domain/Podcast';
 import {Subtitle} from '../domain/SubtitleData';
 import {Topic} from '../domain/Topic';
+import {Word} from '../domain/Word';
 
 const subtitleDummyData: Array<Subtitle> = [
   {
@@ -262,5 +263,55 @@ export const recentlyPodcasts = [
     id: 5,
     text: "11 'Mr. Robot' Episodes To Rewatch After That Series Finale Reveal",
     url: `https://imgix.bustle.com/uploads/image/2019/12/23/c33f7c88-073a-4d7c-bada-d272a7c8759b-screen-shot-2019-12-22-at-23740-pm-1.png?w=1200&h=630&fit=crop&crop=faces&fm=jpg`,
+  },
+];
+
+const words: Word[] = [
+  {
+    id: 'dd2dfbd3',
+    fields: ['Хайр', 'Любовь'],
+    image:
+      'https://opis-cdn.tinkoffjournal.ru/mercury/main-best-dorama-ever.sq0cehcv77rp..jpg',
+  },
+  {
+    id: '2fdb32',
+    fields: ['Сайхан', 'Классный'],
+    image:
+      'https://kuban24.tv/wp-content/uploads/2023/04/photo_2023-04-14_18-48-45-800x480.jpg',
+  },
+  {
+    id: 'hf3242',
+    fields: ['Сайхан', 'Классный'],
+    image:
+      'https://kuban24.tv/wp-content/uploads/2023/04/photo_2023-04-14_18-48-45-800x480.jpg',
+  },
+  {
+    id: 'g1',
+    fields: ['Хайр', 'Любовь'],
+    image:
+      'https://opis-cdn.tinkoffjournal.ru/mercury/main-best-dorama-ever.sq0cehcv77rp..jpg',
+  },
+  {
+    id: 'f2',
+    fields: ['Сайхан', 'Классный'],
+    image:
+      'https://cdn.kanobu.ru/editor/images/98/a2903b33-88ee-449d-9cb1-665dc42e1e54.webp',
+  },
+  {
+    id: 'd3',
+    fields: ['Сайхан', 'Классный'],
+    image:
+      'https://cdn.kanobu.ru/editor/images/98/a2903b33-88ee-449d-9cb1-665dc42e1e54.webp',
+  },
+];
+
+export const topics: Topic[] = [
+  {
+    id: 'df123',
+    url: 'sdfsffsf',
+    description: 'blabla',
+    title: 'sdfsf',
+    date: 'sdfssdf',
+    words,
   },
 ];

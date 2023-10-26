@@ -11,9 +11,10 @@ import Animated, {
 } from 'react-native-reanimated';
 import {snapPoint} from 'react-native-redash';
 import {useCardAnimatedTextStyle} from '../../../../services/hooks/useCardAnimatedTextStyle';
+import {Word} from '../../../../domain/Word';
 
 interface CardProps {
-  card: {name: string; url: string};
+  card: Word;
   index: number;
 }
 
@@ -136,11 +137,11 @@ const Card = ({card, index}: CardProps) => {
             <Text style={[styles.label, styles.nopeText]}>don't know</Text>
           </Animated.View>
           <Image
-            source={{uri: card.url}}
+            source={{uri: card.image}}
             style={[styles.image]}
             resizeMode="cover"
           />
-          <Text style={styles.text}>{card.name}</Text>
+          <Text style={styles.text}>{card.fields[0]}</Text>
         </Animated.View>
       </GestureDetector>
     </View>

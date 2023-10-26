@@ -2,7 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MainScreen from '../src/ui/screens/Main/MainScreen';
 import PodcastInfoViewScreen from '../src/ui/screens/podcast/PodcastInfoViewScreen';
 import PlayerScreen from '../src/ui/screens/Main/PlayerScreen';
-import Words from '../src/ui/screens/training/Words';
+import Topics from '../src/ui/screens/training/Topics';
 import TrainingScreen from '../src/ui/screens/training/TrainingScreen';
 
 const Stack = createNativeStackNavigator();
@@ -45,7 +45,7 @@ function TrainingsStack() {
           headerTitleStyle: {fontFamily: 'RobotoSlab-Bold'},
         };
       }}>
-      <Stack.Screen name="Words" component={Words} />
+      <Stack.Screen name="Words" component={Topics} />
       <Stack.Screen
         name="Training"
         component={TrainingScreen}

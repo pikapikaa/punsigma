@@ -7,10 +7,10 @@ import TopicCard from '../../components/trainings/Topic/TopicCard';
 import SearchView from '../../components/main/SearchView';
 import {useNavigation} from '@react-navigation/native';
 
-const Words = () => {
+const Topics = () => {
   const navigation = useNavigation();
   const onPress = () => {
-    navigation.navigate('Training');
+    navigation.navigate('Training', {topicId: 'df123'});
   };
 
   const renderItem: ListRenderItem<Topic> = useCallback(({item}) => {
@@ -41,7 +41,7 @@ const Words = () => {
   );
 };
 
-export default Words;
+export default Topics;
 
 const styles = StyleSheet.create({
   container: {
