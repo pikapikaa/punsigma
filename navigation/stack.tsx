@@ -3,7 +3,7 @@ import MainScreen from '../src/ui/screens/Main/MainScreen';
 import PodcastInfoViewScreen from '../src/ui/screens/podcast/PodcastInfoViewScreen';
 import PlayerScreen from '../src/ui/screens/Main/PlayerScreen';
 import Words from '../src/ui/screens/training/Words';
-import TrainingScreen from '../src/lib/reanimated_examples/TrainingScreen';
+import TrainingScreen from '../src/ui/screens/training/TrainingScreen';
 
 const Stack = createNativeStackNavigator();
 

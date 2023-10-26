@@ -8,11 +8,11 @@ import Animated, {
   withTiming,
   Easing,
   withDelay,
-  interpolate,
 } from 'react-native-reanimated';
 import {snapPoint} from 'react-native-redash';
+import {useCardAnimatedTextStyle} from '../../../../services/hooks/useCardAnimatedTextStyle';
 
-interface PanExample2Props {
+interface CardProps {
   card: {name: string; url: string};
   index: number;
 }
@@ -24,18 +24,20 @@ const CARD_HEIGHT = CARD_WIDTH * aspectRatio;
 const IMAGE_WIDTH = CARD_WIDTH * 0.9;
 const DURATION = 250;
 const side = (width + CARD_WIDTH + 50) / 2;
-const SNAP_POINTS = [-side, 0, side];
+const SNAP_POINTS_X = [-side, 0, side];
 const side2 = (height + CARD_HEIGHT + 50) / 2;
-const SNAP_POINTS2 = [0, side2];
-const deltaX = width / 2;
-const deltaY = height / 2;
+const SNAP_POINTS_Y = [0, side2];
+const offset = (width - CARD_WIDTH) / 2;
 
-const PanExample2 = ({card, index}: PanExample2Props) => {
+const Card = ({card, index}: CardProps) => {
   const x = useSharedValue(0);
   const y = useSharedValue(-height);
   const context = useSharedValue({x: 0, y: 0});
   const theta = Math.random() * 20 - 10;
   const scale = useSharedValue(1);
+  const yesVisible = useSharedValue(false);
+  const noVisible = useSharedValue(false);
+  const doubtVisible = useSharedValue(false);
 
   useEffect(() => {
     const delay = 1000 + index * DURATION;
@@ -59,13 +61,35 @@ const PanExample2 = ({card, index}: PanExample2Props) => {
     .onUpdate(event => {
       x.value = event.translationX + context.value.x;
       y.value = event.translationY + context.value.y;
+      if (x.value < -offset) {
+        yesVisible.value = false;
+        noVisible.value = true;
+        doubtVisible.value = false;
+      } else if (x.value >= offset) {
+        yesVisible.value = true;
+        noVisible.value = false;
+        doubtVisible.value = false;
+      } else if (y.value > 30) {
+        yesVisible.value = false;
+        noVisible.value = false;
+        doubtVisible.value = true;
+      } else {
+        yesVisible.value = false;
+        noVisible.value = false;
+        doubtVisible.value = false;
+      }
     })
     .onEnd(event => {
-      const dest = snapPoint(x.value, event.velocityX, SNAP_POINTS);
-      const dest1 = snapPoint(y.value, event.velocityY, SNAP_POINTS2);
-      x.value = withSpring(dest, {velocity: event.velocityX});
-      y.value = withSpring(dest1, {velocity: event.velocityY});
+      const destX = snapPoint(x.value, event.velocityX, SNAP_POINTS_X);
+      const destY = snapPoint(y.value, event.velocityY, SNAP_POINTS_Y);
+      x.value = withSpring(destX, {velocity: event.velocityX});
+      y.value = withSpring(destY, {velocity: event.velocityY});
       scale.value = withTiming(1, {easing: Easing.inOut(Easing.ease)});
+    })
+    .onFinalize(() => {
+      yesVisible.value = false;
+      noVisible.value = false;
+      doubtVisible.value = false;
     });
 
   const rStyle = useAnimatedStyle(() => {
@@ -78,36 +102,42 @@ const PanExample2 = ({card, index}: PanExample2Props) => {
     };
   });
 
-  const rTextStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(x.value, [0, deltaX / 4], [0, 1]);
-    return {
-      opacity,
-    };
-  });
-
-  const rTextStyle2 = useAnimatedStyle(() => {
-    const opacity = interpolate(x.value, [(-1 * deltaX) / 4, 0], [1, 0]);
-    return {
-      opacity,
-    };
-  });
+  const {animatedStyle: rYesTextStyle} = useCardAnimatedTextStyle(yesVisible);
+  const {animatedStyle: rDoubtTextStyle} =
+    useCardAnimatedTextStyle(doubtVisible);
+  const {animatedStyle: rNopeTextStyle} = useCardAnimatedTextStyle(noVisible);
 
   return (
     <View style={styles.container} pointerEvents="box-none">
       <GestureDetector gesture={gesture}>
         <Animated.View style={[styles.card, rStyle]}>
-          <View style={styles.header}>
-            <Animated.View style={[styles.nope, rTextStyle2]}>
-              <Text style={styles.nopeLabel}>don't know</Text>
-            </Animated.View>
-
-            <Animated.View style={[styles.like, rTextStyle]}>
-              <Text style={styles.likeLabel}>know</Text>
-            </Animated.View>
-          </View>
+          <Animated.View
+            style={[
+              styles.labelContainer,
+              styles.likeContainer,
+              rYesTextStyle,
+            ]}>
+            <Text style={[styles.label, styles.likeText]}>know</Text>
+          </Animated.View>
+          <Animated.View
+            style={[
+              styles.labelContainer,
+              styles.doubtContainer,
+              rDoubtTextStyle,
+            ]}>
+            <Text style={[styles.label, styles.doubtText]}>doubt</Text>
+          </Animated.View>
+          <Animated.View
+            style={[
+              styles.labelContainer,
+              styles.nopeContainer,
+              rNopeTextStyle,
+            ]}>
+            <Text style={[styles.label, styles.nopeText]}>don't know</Text>
+          </Animated.View>
           <Image
             source={{uri: card.url}}
-            style={[styles.image, {width: IMAGE_WIDTH, height: IMAGE_WIDTH}]}
+            style={[styles.image]}
             resizeMode="cover"
           />
           <Text style={styles.text}>{card.name}</Text>
@@ -117,7 +147,7 @@ const PanExample2 = ({card, index}: PanExample2Props) => {
   );
 };
 
-export default PanExample2;
+export default Card;
 
 const styles = StyleSheet.create({
   container: {
@@ -150,42 +180,43 @@ const styles = StyleSheet.create({
   image: {
     borderRadius: 20,
     overflow: 'hidden',
+    width: IMAGE_WIDTH,
+    height: IMAGE_WIDTH,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  doubt: {
+  labelContainer: {
     borderWidth: 4,
     borderRadius: 5,
     padding: 8,
-    borderColor: 'orange',
+    position: 'absolute',
+    zIndex: 10,
   },
-  doubtLabel: {
-    fontSize: 32,
-    color: 'orange',
-    fontWeight: 'bold',
-  },
-  like: {
-    borderWidth: 4,
-    borderRadius: 5,
-    padding: 8,
+  likeContainer: {
     borderColor: '#6ee3b4',
   },
-  likeLabel: {
-    fontSize: 32,
-    color: '#6ee3b4',
-    fontWeight: 'bold',
-  },
-  nope: {
-    borderWidth: 4,
-    borderRadius: 5,
-    padding: 8,
+  nopeContainer: {
+    right: 0,
     borderColor: '#ec5288',
   },
-  nopeLabel: {
+  doubtContainer: {
+    left: CARD_WIDTH / 2 - 30,
+    borderColor: 'orange',
+  },
+  label: {
     fontSize: 32,
-    color: '#ec5288',
     fontWeight: 'bold',
+    fontFamily: 'RobotoSlab-Bold',
+  },
+  nopeText: {
+    color: '#ec5288',
+  },
+  doubtText: {
+    color: 'orange',
+  },
+  likeText: {
+    color: '#6ee3b4',
   },
 });

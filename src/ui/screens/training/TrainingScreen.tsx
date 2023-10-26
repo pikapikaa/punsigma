@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
-import Card from './Card';
+import Card from '../../components/trainings/Training/Card';
 
 interface TrainingScreenProps {}
 
