@@ -45,7 +45,7 @@ const Card = ({card, index}: CardProps) => {
     y.value = withDelay(
       delay,
       withTiming(0, {
-        duration: DURATION,
+        duration: 1000,
         easing: Easing.inOut(Easing.ease),
       }),
     );
@@ -62,15 +62,15 @@ const Card = ({card, index}: CardProps) => {
     .onUpdate(event => {
       x.value = event.translationX + context.value.x;
       y.value = event.translationY + context.value.y;
-      if (x.value < -offset) {
+      if (x.value < -10) {
         yesVisible.value = false;
         noVisible.value = true;
         doubtVisible.value = false;
-      } else if (x.value >= offset) {
+      } else if (x.value >= 10) {
         yesVisible.value = true;
         noVisible.value = false;
         doubtVisible.value = false;
-      } else if (y.value > 30) {
+      } else if (y.value > 10) {
         yesVisible.value = false;
         noVisible.value = false;
         doubtVisible.value = true;
