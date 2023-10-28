@@ -14,4 +14,12 @@ const mn = {
   confirm: '好的',
   resetBtn: '重设密码',
 };
-export {en, mn};
+const ru = {
+  welcome: 'Привет',
+  signoutBtn: 'Гарах',
+  signOutAlertTitle: '取消',
+  signOutAlertMess: '您确定要退出吗？',
+  confirm: '好的',
+  resetBtn: '重设密码',
+};
+export {en, mn, ru};

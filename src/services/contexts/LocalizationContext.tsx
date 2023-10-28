@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {createContext, useContext} from 'react';
 import {I18n} from 'i18n-js';
 
-import {en, mn} from '../../lib/i18n/supportedLanguages';
+import {en, mn, ru} from '../../lib/i18n/supportedLanguages';
 import {getLocales} from 'react-native-localize';
 
 export type LocalizationContextProp = {
@@ -18,7 +18,7 @@ export const useLocalizationContext = () => useContext(LocalizationContext);
 export const LocalizationProvider: React.JSX.Element = ({children}) => {
   const createNewLocale = () => {
     const i18n = new I18n();
-    i18n.translations = {mn, en};
+    i18n.translations = {mn, en, ru};
     i18n.enableFallback = true;
     const locales = getLocales();
     let langCode = 'en';
