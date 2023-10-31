@@ -22,7 +22,7 @@ export const PlayerContext = createContext<PlayerContextProp>({
 
 export const usePlayerContext = () => useContext(PlayerContext);
 
-export const PlayerProvider: React.JSX.Element = ({children}) => {
+export const PlayerProvider = ({children}: {children: React.JSX.Element}) => {
   const [isFloatingOpen, setIsFloatingOpen] = useState(true);
   const [podcast, setPodcast] = useState<Podcast>();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);

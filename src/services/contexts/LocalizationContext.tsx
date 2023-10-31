@@ -15,7 +15,11 @@ export const LocalizationContext = createContext<LocalizationContextProp>({
 
 export const useLocalizationContext = () => useContext(LocalizationContext);
 
-export const LocalizationProvider: React.JSX.Element = ({children}) => {
+export const LocalizationProvider = ({
+  children,
+}: {
+  children: React.JSX.Element;
+}) => {
   const createNewLocale = () => {
     const i18n = new I18n();
     i18n.translations = {mn, en, ru};
