@@ -26,7 +26,6 @@ type FlatListRenderItem = {
 };
 
 const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
-  //const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentWord, setCurrentWord] = useState('');
