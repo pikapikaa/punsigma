@@ -26,7 +26,7 @@ type FlatListRenderItem = {
 };
 
 const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  //const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentWord, setCurrentWord] = useState('');
@@ -44,6 +44,16 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
   } = usePlayMedia();
 
   const {position} = getProgress();
+  const currentIndex = syncLyric(position);
+
+  useEffect(() => {
+    if (currentIndex > 0) {
+      flatListRef?.current?.scrollToIndex({
+        index: currentIndex,
+        viewPosition: 0.5,
+      });
+    }
+  }, [currentIndex]);
 
   useEffect(() => {
     async function fetchData() {
@@ -55,7 +65,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
     }
   }, [isVisible]);
 
-  const syncLyric = (currentPos: number) => {
+  function syncLyric(currentPos: number) {
     const scores: number[] = [];
     currentPodcast?.subtitleData.forEach(({time}) => {
       const score = currentPos - time;
@@ -66,7 +76,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
 
     const closest = Math.min(...scores);
     return scores.indexOf(closest);
-  };
+  }
 
   const onPlay = () => {
     if (currentPodcast?.duration && position >= currentPodcast?.duration) {
@@ -74,17 +84,6 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
     }
     playAndPauseMedia();
   };
-
-  useEffect(() => {
-    const index = syncLyric(position);
-    if (index > -1) {
-      setCurrentIndex(index);
-      flatListRef?.current?.scrollToIndex({
-        index,
-        viewPosition: 0.5,
-      });
-    }
-  }, [position]);
 
   const onTranslateWord = async (word: string) => {
     await pauseMedia();
