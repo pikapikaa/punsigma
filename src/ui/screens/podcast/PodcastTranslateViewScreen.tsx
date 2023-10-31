@@ -6,14 +6,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 interface PodcastTranslateViewScreenProps {
   isVisible: boolean;
-  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  onBackdropPress: () => void;
   title: string;
   description: string;
 }
 
 const PodcastTranslateViewScreen = ({
   isVisible,
-  setModalVisible,
+  onBackdropPress,
   title,
   description,
 }: PodcastTranslateViewScreenProps) => {
@@ -23,7 +23,7 @@ const PodcastTranslateViewScreen = ({
       animationIn={'fadeIn'}
       animationOut={'fadeOut'}
       isVisible={isVisible}
-      onBackdropPress={() => setModalVisible(false)}>
+      onBackdropPress={onBackdropPress}>
       <View style={styles.content}>
         <Text style={styles.modalText}>{title}</Text>
         <ScrollView>

@@ -86,20 +86,12 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
     }
   }, [position]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await translateWord(currentWord);
-      setTranslateText(result);
-    };
-    if (isModalVisible && currentWord) {
-      fetchData();
-    }
-  }, [isModalVisible, currentWord]);
-
   const onTranslateWord = async (word: string) => {
     await pauseMedia();
-    const clearWord = removePunctuation(word);
-    setCurrentWord(clearWord);
+    const purifiedWord = removePunctuation(word);
+    setCurrentWord(purifiedWord);
+    const translatedWord = await translateWord(purifiedWord);
+    setTranslateText(translatedWord);
     setModalVisible(true);
   };
 
@@ -117,6 +109,11 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
     },
     [currentIndex],
   );
+
+  const closeTranslateModal = async () => {
+    await playAndPauseMedia();
+    setModalVisible(false);
+  };
 
   return (
     <>
@@ -140,7 +137,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
 
       <PodcastTranslateViewScreen
         isVisible={isModalVisible}
-        setModalVisible={setModalVisible}
+        onBackdropPress={closeTranslateModal}
         title={currentWord}
         description={translateText}
       />
