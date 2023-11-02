@@ -10,9 +10,7 @@ import MediaPlayer from '../../components/ui/other/MediaPlayer';
 import BottomSheetModalWrap from '../../components/layouts/BottomSheetModalWrap';
 import PodcastTranslateViewScreen from './PodcastTranslateViewScreen';
 import {usePlayMedia} from '../../../application/playMedia';
-import {translateWord} from '../../../services/api';
 import PodcastTextRowItem from '../../components/podcast/PodcastTextRowItem';
-import {removePunctuation} from '../../../lib/util';
 import {Subtitle} from '../../../domain/SubtitleData';
 import {Podcast} from '../../../domain/Podcast';
 
@@ -29,7 +27,6 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentWord, setCurrentWord] = useState('');
-  const [translateText, setTranslateText] = useState('');
   const [currentPodcast, setCurrentPodcast] = useState<Podcast>();
 
   const flatListRef = useRef<BottomSheetFlatListMethods>(null);
@@ -86,10 +83,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
 
   const onTranslateWord = async (word: string) => {
     await pauseMedia();
-    const purifiedWord = removePunctuation(word);
-    setCurrentWord(purifiedWord);
-    const translatedWord = await translateWord(purifiedWord);
-    setTranslateText(translatedWord);
+    setCurrentWord(word);
     setModalVisible(true);
   };
 
@@ -136,7 +130,7 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
         <PodcastTranslateViewScreen
           isVisible={isModalVisible}
           onBackdropPress={closeTranslateModal}
-          title={currentWord}
+          text={currentWord}
         />
       )}
     </>

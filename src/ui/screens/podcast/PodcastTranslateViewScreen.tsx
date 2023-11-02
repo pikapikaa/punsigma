@@ -10,21 +10,24 @@ import {SCREEN_HEIGHT} from '@gorhom/bottom-sheet';
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/Ionicons';
 import useSWR from 'swr';
+
 import {translateWord} from '../../../services/api';
+import {removePunctuation} from '../../../lib/util';
 
 interface PodcastTranslateViewScreenProps {
   isVisible: boolean;
   onBackdropPress: () => void;
-  title: string;
+  text: string;
 }
 
 const PodcastTranslateViewScreen = ({
   isVisible,
   onBackdropPress,
-  title,
+  text,
 }: PodcastTranslateViewScreenProps) => {
+  const purifiedText = removePunctuation(text);
   const {data, isLoading, error} = useSWR(
-    ['', {word: title}],
+    ['', {word: purifiedText}],
     ([url, payload]) => translateWord(payload.word),
   );
 
@@ -41,7 +44,7 @@ const PodcastTranslateViewScreen = ({
       isVisible={isVisible}
       onBackdropPress={onBackdropPress}>
       <View style={styles.content}>
-        <Text style={styles.modalText}>{title}</Text>
+        <Text style={styles.modalText}>{text}</Text>
         <ScrollView>{content}</ScrollView>
         <View style={{alignItems: 'flex-end'}}>
           <View style={styles.bottom}>
