@@ -1,22 +1,38 @@
 import React from 'react';
-import {Text, View, StyleSheet, ScrollView} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  ScrollView,
+  ActivityIndicator,
+} from 'react-native';
 import {SCREEN_HEIGHT} from '@gorhom/bottom-sheet';
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/Ionicons';
+import useSWR from 'swr';
+import {translateWord} from '../../../services/api';
 
 interface PodcastTranslateViewScreenProps {
   isVisible: boolean;
   onBackdropPress: () => void;
   title: string;
-  description: string;
 }
 
 const PodcastTranslateViewScreen = ({
   isVisible,
   onBackdropPress,
   title,
-  description,
 }: PodcastTranslateViewScreenProps) => {
+  const {data, isLoading, error} = useSWR(
+    ['', {word: title}],
+    ([url, payload]) => translateWord(payload.word),
+  );
+
+  let content = null;
+  if (isLoading) content = <ActivityIndicator />;
+  else if (error) content = <Text>Что-то пошло не так</Text>;
+  else content = <Text style={{color: 'gray'}}>{data}</Text>;
+
   return (
     <Modal
       hideModalContentWhileAnimating
@@ -26,20 +42,12 @@ const PodcastTranslateViewScreen = ({
       onBackdropPress={onBackdropPress}>
       <View style={styles.content}>
         <Text style={styles.modalText}>{title}</Text>
-        <ScrollView>
-          <Text style={{color: 'gray'}}>{description}</Text>
-        </ScrollView>
+        <ScrollView>{content}</ScrollView>
         <View style={{alignItems: 'flex-end'}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: 3,
-            }}>
+          <View style={styles.bottom}>
             <Icon name="heart" size={13} color="red" />
             <Icon name="arrow-forward" size={10} color="grey" />
-            <Text style={{color: '#1e6887', fontWeight: 'bold'}}>Burlang</Text>
+            <Text style={styles.textBottom}>Burlang</Text>
           </View>
         </View>
       </View>
@@ -64,4 +72,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
   },
+  bottom: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 3,
+  },
+  textBottom: {color: '#1e6887', fontWeight: 'bold'},
 });

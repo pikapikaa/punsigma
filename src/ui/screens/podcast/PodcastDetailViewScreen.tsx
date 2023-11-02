@@ -109,7 +109,6 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
   );
 
   const closeTranslateModal = async () => {
-    await playAndPauseMedia();
     setModalVisible(false);
   };
 
@@ -133,12 +132,13 @@ const PodcastDetailViewScreen = ({modalRef}: PodcastDetailViewScreenProps) => {
         </View>
       </BottomSheetModalWrap>
 
-      <PodcastTranslateViewScreen
-        isVisible={isModalVisible}
-        onBackdropPress={closeTranslateModal}
-        title={currentWord}
-        description={translateText}
-      />
+      {isModalVisible && (
+        <PodcastTranslateViewScreen
+          isVisible={isModalVisible}
+          onBackdropPress={closeTranslateModal}
+          title={currentWord}
+        />
+      )}
     </>
   );
 };
