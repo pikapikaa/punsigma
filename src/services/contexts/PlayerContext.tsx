@@ -5,7 +5,7 @@ import {createContext, useContext, useRef} from 'react';
 import {Podcast} from '../../domain/Podcast';
 
 export type PlayerContextProp = {
-  isFloatingOpen: boolean;
+  isOpen: boolean;
   playerSheetModalRef: React.RefObject<BottomSheetModalMethods>;
   close: () => void;
   open: () => void;
@@ -14,7 +14,7 @@ export type PlayerContextProp = {
 };
 
 export const PlayerContext = createContext<PlayerContextProp>({
-  isFloatingOpen: true,
+  isOpen: true,
   playerSheetModalRef: useRef<BottomSheetModal>(null),
   close: () => {},
   open: () => {},
@@ -23,16 +23,16 @@ export const PlayerContext = createContext<PlayerContextProp>({
 export const usePlayerContext = () => useContext(PlayerContext);
 
 export const PlayerProvider = ({children}: {children: React.JSX.Element}) => {
-  const [isFloatingOpen, setIsFloatingOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
   const [podcast, setPodcast] = useState<Podcast>();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
   const close = () => {
-    setIsFloatingOpen(false);
+    setIsOpen(false);
   };
 
   const open = () => {
-    setIsFloatingOpen(true);
+    setIsOpen(true);
   };
 
   const setCurrentPodcast = (p: Podcast) => {
@@ -42,7 +42,7 @@ export const PlayerProvider = ({children}: {children: React.JSX.Element}) => {
   return (
     <PlayerContext.Provider
       value={{
-        isFloatingOpen,
+        isOpen,
         close: close,
         open: open,
         playerSheetModalRef: bottomSheetModalRef,

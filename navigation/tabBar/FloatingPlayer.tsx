@@ -7,8 +7,12 @@ import {PlayerContext} from '../../src/services/contexts/PlayerContext';
 const FloatingPlayer = () => {
   const {pauseMedia, playAndPauseMedia, isPlaying} = usePlayMedia();
 
-  const {isFloatingOpen, close, playerSheetModalRef, podcast} =
-    useContext(PlayerContext);
+  const {
+    isOpen: isFloatingOpen,
+    close,
+    playerSheetModalRef,
+    podcast,
+  } = useContext(PlayerContext);
 
   const closeBottomPlayer = () => {
     close();

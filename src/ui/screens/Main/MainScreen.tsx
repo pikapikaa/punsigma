@@ -14,12 +14,22 @@ import PodcastDetailViewScreen from '../podcast/PodcastDetailViewScreen';
 import {usePlayMedia} from '../../../application/playMedia';
 import {useNavigation} from '@react-navigation/native';
 import {usePlayerContext} from '../../../services/contexts/PlayerContext';
+import {useModalBackHandler} from '../../../services/hooks/useModalBackHandler';
 
 const MainScreen = () => {
-  const {playerSheetModalRef, open} = usePlayerContext();
-  const [isOpen, setIsOpen] = useState(false);
+  const {
+    playerSheetModalRef,
+    open,
+    isOpen: isFloatingOpen,
+  } = usePlayerContext();
   const {playMedia} = usePlayMedia();
   const navigation = useNavigation();
+
+  useModalBackHandler(
+    isFloatingOpen,
+    () => playerSheetModalRef.current?.close(),
+    () => navigation.goBack(),
+  );
 
   const onShowInfo = useCallback(() => {
     navigation.navigate('PodcastInfoView');
