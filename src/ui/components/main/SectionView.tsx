@@ -36,7 +36,7 @@ const SectionView = ({
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
           data={data}
-          ItemSeparatorComponent={<View style={{height: 30}}></View>}
+          ItemSeparatorComponent={() => <View style={{height: 30}}></View>}
           renderItem={renderItem}
         />
       </ScrollView>
