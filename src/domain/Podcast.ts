@@ -1,5 +1,5 @@
 import {RatingType, PitchAlgorithm} from 'react-native-track-player';
-import {SubtitleData} from './SubtitleData';
+import {Subtitle} from './SubtitleData';
 
 export type Podcast = {
   id: string;
@@ -19,5 +19,5 @@ export type Podcast = {
   pitchAlgorithm?: PitchAlgorithm;
   headers?: object;
   isLiveStream?: boolean;
-  subtitleData: SubtitleData[];
+  subtitleData: Subtitle[];
 };
